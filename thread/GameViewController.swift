@@ -16,7 +16,16 @@ class GameViewController: UIViewController {
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
-            }
+        
+        let scene = GameScene(size: view.bounds.size)
+        let skView = view as! SKView
+        skView.showsFPS = false
+        skView.showsNodeCount = false
+        skView.ignoresSiblingOrder = false 
+        scene.scaleMode = .resizeFill
+        skView.presentScene(scene)
+    
+    }
     
     override var shouldAutorotate: Bool {
         return false
