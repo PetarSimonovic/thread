@@ -38,6 +38,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //    }
     
     override func update (_ currentTime: TimeInterval) {
+        
+        if isGameStarted == true {
+            if isDead == false {
+                enumerateChildNodes(withName: "background", using: ({
+                    (node, error) in
+                    let bg = node as! SKSpriteNode
+                    bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
+                    if bg.position.x <= -bg.size.width {
+                        bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
+                    }
+                }))
+            }
+        }
 //
     }
     
@@ -64,7 +77,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
 //        background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
-//        
+//
 //        addChild(background)
 
 
