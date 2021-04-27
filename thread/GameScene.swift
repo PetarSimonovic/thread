@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var wallPair = SKNode()
     var moveAndRemove = SKAction()
     var backgroundNode = 0
+    var seed = SKSpriteNode()
     
         
     
@@ -32,6 +33,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         createScene()
+        
+        self.seed = createSeed()
+        self.addChild(seed)
     }
 //
 //    override func touchesBegan(_ touches: Set, with event: UIEvent?){
@@ -81,25 +85,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     
     
+    
     func createScene() {
-//        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-//        self.physicsBody?.categoryBitMask = CollisionBitMask.groundCategory
-//        self.physicsBody?.collisionBitMask = CollisionBitMask.needleCategory
-//        self.physicsBody?.contactTestBitMask = CollisionBitMask.needleCategory
-//        self.physicsBody?.isDynamic = false
-//        self.physicsBody?.affectedByGravity = false
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        self.physicsBody?.categoryBitMask = CollisionBitMask.wallCategory
+        self.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.affectedByGravity = false
 //
-//        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.contactDelegate = self
         self.backgroundColor = SKColor (red: 80.0/255.0, green: 192.0/255.0, blue: 203.0/255.0, alpha: 1.0)
-
-//        background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
-//
-//        addChild(background)
-
-
-//
-
-//
    }
 
 }
