@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-struct collisionBitMask {
+struct CollisionBitMask {
     static let needleCategory:UInt32 = 0x1 << 0
     static let wallCategory:UInt32 = 0x1 << 1
     static let loopCategory:UInt32 = 0x1 << 2
