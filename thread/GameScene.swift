@@ -10,7 +10,7 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var isGameStarted: Bool = true
+    var isGameStarted: Bool = false
     var isDead: Bool = false
     
    // SOUND: let coinSound = SKAction.playSoundFileNamed("CoinSound.mp3", waitFor Completion: false)
@@ -37,13 +37,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.seed = createSeed()
         self.addChild(seed)
-        let rotateSeed = SKAction.rotate(byAngle: CGFloat(-Double.pi), duration: 1)
+        let rotateSeed = SKAction.rotate(byAngle: CGFloat(-Double.pi), duration: 0.3)
         seed.run(SKAction.repeatForever(rotateSeed))
     }
-//
-//    override func touchesBegan(_ touches: Set, with event: UIEvent?){
-//
-//    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        if isGameStarted == false {
+            isGameStarted = true
+            seed.physicsBody?.affectedByGravity = true
+            seed.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            seed.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 20))
+        } else {
+            if isDead == false {
+                seed.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+                seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 20))
+            }
+        }
+        
+
+    }
     
     override func update (_ currentTime: TimeInterval) {
         

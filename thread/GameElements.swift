@@ -33,7 +33,7 @@ extension GameScene {
         seed.physicsBody?.collisionBitMask = CollisionBitMask.wallCategory
         seed.physicsBody?.contactTestBitMask = CollisionBitMask.wallCategory | CollisionBitMask.loopCategory
         
-        seed.physicsBody?.affectedByGravity = true
+        seed.physicsBody?.affectedByGravity = false
         seed.physicsBody?.isDynamic = true
     
         return seed
