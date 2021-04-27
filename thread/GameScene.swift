@@ -26,6 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveAndRemove = SKAction()
     var backgroundNode = 0
     var seed = SKSpriteNode()
+    var repeatActionSeed = SKAction()
     
         
     
@@ -36,6 +37,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.seed = createSeed()
         self.addChild(seed)
+        let rotateSeed = SKAction.rotate(byAngle: CGFloat(-Double.pi), duration: 1)
+        seed.run(SKAction.repeatForever(rotateSeed))
     }
 //
 //    override func touchesBegan(_ touches: Set, with event: UIEvent?){
