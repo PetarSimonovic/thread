@@ -59,8 +59,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
              seed.physicsBody?.velocity = CGVector(dx: 3, dy: 3)
            // seed.speed = 5
               seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.5))
-              seed.physicsBody?.applyTorque(CGFloat(0.004))
-              seed.physicsBody?.applyForce(CGVector(dx: 2, dy: 2))
+              seed.physicsBody?.applyTorque(CGFloat(0.005))
+                seed.physicsBody?.applyForce(CGVector(dx: 1.5, dy: 1.5))
              //   accelerate()
             // seed.run(SKAction.repeatForever(seedTorque))
 //                let value = seed.physicsBody!.velocity.dy * 200

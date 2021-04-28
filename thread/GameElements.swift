@@ -24,8 +24,8 @@ extension GameScene {
         
         // Asign physics
         seed.physicsBody = SKPhysicsBody(texture: seed.texture!, size: seed.size)
-        seed.physicsBody?.linearDamping = 0.5 // simulates air friction (value between 0 and 1)
-        seed.physicsBody?.restitution = 0.3 // how much energy object loses when it hits another (value between 0 and 1)
+        seed.physicsBody?.linearDamping = 0.55 // simulates air friction (value between 0 and 1)
+        seed.physicsBody?.restitution = 0.8 // how much energy object loses when it hits another (value between 0 and 1)
         
         // Add collision masks
         
