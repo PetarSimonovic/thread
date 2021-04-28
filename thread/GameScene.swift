@@ -24,21 +24,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var logoImg = SKSpriteNode()
     var wallPair = SKNode()
     var moveAndRemove = SKAction()
-    var backgroundNode = 0
+    var rockNode = 0
     var seed = SKSpriteNode()
     var repeatActionSeed = SKAction()
+    var acceleration = CGFloat(1)
     
         
     
   //  let fabric = SKSpriteNode(color: .gray, size: CGSize(width: 200, height: 200))
     
     override func didMove(to view: SKView) {
-        createScene()
+        setGravity()
+         createScene()
         
         self.seed = createSeed()
         self.addChild(seed)
         let rotateSeed = SKAction.rotate(byAngle: CGFloat(-Double.pi), duration: 0.3)
         seed.run(SKAction.repeatForever(rotateSeed))
+        decelerate()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -50,26 +53,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             if isDead == false {
                 seed.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 20))
+//                let moveSeed = SKAction.moveBy(x: 10, y: 10, duration: 0.1)
+                seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 5))
+                //seed.physicsBody?.applyTorque(CGFloat(100))
+                accelerate()
+         //     seed.run(SKAction.repeatForever(moveSeed), withKey: "seedFlight")
+            // seed.run(SKAction.repeatForever(seedTorque))
+
             }
         }
         
 
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        removeAction(forKey: "seedFlight")
+    }
+//
     override func update (_ currentTime: TimeInterval) {
         
         if isGameStarted == true {
-        createBackground()
+        createRock()
          if isDead == false {
                 enumerateChildNodes(withName: "background", using: ({
                     (node, error) in
                     let bg = node as! SKSpriteNode
-                    bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
+                    bg.position = CGPoint(x: bg.position.x - (self.speed + self.acceleration), y: bg.position.y)
                     if bg.position.x <= -bg.size.width {
                         print(bg.position.x)
                         bg.removeFromParent()
-                        self.backgroundNode -= 1
+                        self.rockNode -= 1
                       //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
                     }
                 }))
@@ -78,32 +91,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //
     }
     
-    func createBackground() {
-      let  element = Int.random(in: 1..<100)
-        if element <= 9 && backgroundNode <= 8 {
-            print(element)
-        let background = SKSpriteNode(imageNamed: "background_\(element)")
-                background.anchorPoint = CGPoint.init(x: 0, y: 0)
-            let height = CGFloat(arc4random() % UInt32(CGFloat(self.frame.height)))
-                background.position = CGPoint(x: CGFloat(1) * self.frame.width, y: height)
-                background.name = "background"
-              let randomScale = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-              background.setScale(randomScale)
-            //background.zRotation = CGFloat(M_PI_4)
-              self.addChild(background)
-                backgroundNode += 1
-          
-            }
-            
-            
-            
-        }
+
     
     
     
     func createScene() {
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        self.physicsBody?.categoryBitMask = CollisionBitMask.wallCategory
+        self.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
         self.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
         self.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
         self.physicsBody?.isDynamic = false
