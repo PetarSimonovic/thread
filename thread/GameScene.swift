@@ -36,14 +36,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         setGravity()
-         createScene()
+        energyField()
+
+        createScene()
         
         self.seed = createSeed()
         self.addChild(seed)
       //  let rotateSeed = SKAction.rotate(byAngle: CGFloat(-Double.pi), duration: 0.3)
       //  seed.speed = 1
        // seed.run(SKAction.repeatForever(rotateSeed))
-        //decelerate()
+      //  decelerate()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -54,11 +56,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             seed.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 0))
         } else {
             if isDead == false {
-                seed.physicsBody?.velocity = CGVector(dx: 0.5, dy: 0.5)
+                seed.physicsBody?.velocity = CGVector(dx: 1, dy: 0.5)
            // seed.speed = 5
                 seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.5))
-                //seed.physicsBody?.applyTorque(CGFloat(-1))
-                //accelerate()
+              seed.physicsBody?.applyTorque(CGFloat(0.0001))
+                seed.physicsBody?.applyForce(CGVector(dx: 0.2, dy: 0.2))
+             //   accelerate()
             // seed.run(SKAction.repeatForever(seedTorque))
 //                let value = seed.physicsBody!.velocity.dy * 200
 //                let rotate = SKAction.rotate(byAngle: value, duration: 0.1)
@@ -93,6 +96,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                 }))
             let value = seed.physicsBody!.velocity.dy * 0.003
+            seed.physicsBody?.applyTorque(CGFloat(0.0001))
+
                 let rotate = SKAction.rotate(byAngle: value, duration: 0.3)
 
                 seed.run(rotate)

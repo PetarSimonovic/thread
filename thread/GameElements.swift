@@ -11,7 +11,7 @@ struct CollisionBitMask {
     static let seedCategory:UInt32 = 0x1 << 0
     static let rockCategory:UInt32 = 0x1 << 1
     static let loopCategory:UInt32 = 0x1 << 2
-    static let groundCategory:UInt32 = 0x1 << 3
+    static let energyCategory:UInt32 = 0x1 << 3
 }
 
 extension GameScene {
@@ -42,30 +42,11 @@ extension GameScene {
     }
     
     func createCanyon() {
-     //topRock()
-      bottomRock()
+      addRock()
     }
     
-    func topRock() {
-       // let  element = Int.random(in: 1..<9)
-          let rock = SKSpriteNode(imageNamed: "rocK_5")
-              rock.physicsBody = SKPhysicsBody(texture: rock.texture!, size: rock.texture!.size())
-              rock.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
-              rock.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
-              rock.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
-              rock.physicsBody?.isDynamic = false
-              rock.physicsBody?.affectedByGravity = false
-              rock.anchorPoint = CGPoint.init(x: 0, y: 0)
-              //let height = CGFloat(arc4random() % UInt32(CGFloat(self.frame.height)))
-          rock.position = CGPoint(x: CGFloat(1) * self.frame.width, y: 400)
-                  rock.name = "background"
-                let randomScale = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-                rock.setScale(randomScale)
-              //background.zRotation = CGFloat(M_PI_4)
-                self.addChild(rock)
-    }
     
-    func bottomRock() {
+    func addRock() {
        let  element = Int.random(in: 1..<100)
         if element <= 13 && nodeCount < 6 {
           let rock = SKSpriteNode(imageNamed: "rock_\(element)")
@@ -77,7 +58,7 @@ extension GameScene {
               rock.physicsBody?.affectedByGravity = false
             rock.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
               let height = CGFloat(arc4random() % UInt32(CGFloat(self.frame.height)))
-          rock.position = CGPoint(x: CGFloat(1) * self.frame.width, y: height )
+            rock.position = CGPoint(x: CGFloat(1.5) * self.frame.width, y: height )
                   rock.name = "rock"
                 let randomScale = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
                 rock.setScale(randomScale)
@@ -86,18 +67,36 @@ extension GameScene {
     }
     }
     
-    func decelerate() {
-        if acceleration >= 1 {
-            acceleration -= 0.2
+    func energyField() {
+        let energy = SKSpriteNode()
+        energy.size = CGSize(width: 10, height: self.frame.height)
+        seed.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: self.frame.height))
+        energy.physicsBody?.categoryBitMask = CollisionBitMask.energyCategory
+        energy.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
+        energy.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
+        energy.physicsBody?.isDynamic = false
+        energy.physicsBody?.affectedByGravity = false
+        energy.position = CGPoint(x: 0, y: self.frame.height / 2)
+        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
+            fireParticles.position = energy.position
+            addChild(fireParticles)
         }
+
+           // nodeCount += 1
     }
     
-    func accelerate() {
-        if acceleration <= 10 {
-            acceleration += 0.5
-        }
-    }
+//    func decelerate() {
+////        if acceleration >= 1 {
+////            acceleration -= 0.1
+////        }
+//    }
     
+//    func accelerate() {
+////        if acceleration <= 10 {
+////            acceleration += 0.1
+////        }
+//    }
+//    
     
     func setGravity() {
         physicsWorld.gravity = CGVector(dx:0, dy: 0);
