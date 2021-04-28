@@ -63,6 +63,10 @@ extension GameScene {
                 let randomScale = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
                 rock.setScale(randomScale)
                 self.addChild(rock)
+            let time = Float.random(in: 1...8)
+            let spin = [Double.pi, -Double.pi].randomElement()!
+            let rotate = SKAction.rotate(byAngle: CGFloat(spin), duration: TimeInterval(time))
+            rock.run(SKAction.repeatForever(rotate))
                nodeCount += 1
     }
     }
