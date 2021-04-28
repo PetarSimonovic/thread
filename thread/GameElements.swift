@@ -63,7 +63,7 @@ extension GameScene {
                 let randomScale = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
                 rock.setScale(randomScale)
                 self.addChild(rock)
-            nodeCount += 1
+               nodeCount += 1
     }
     }
     

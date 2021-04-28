@@ -42,7 +42,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.seed = createSeed()
         self.addChild(seed)
-      //  let rotateSeed = SKAction.rotate(byAngle: CGFloat(-Double.pi), duration: 0.3)
+        
+        let makeRock = SKAction.sequence([SKAction.run(createCanyon), SKAction.wait(forDuration: 0.1)])
+        
+        self.run(SKAction.repeatForever(makeRock))
+    
+
       //  seed.speed = 1
        // seed.run(SKAction.repeatForever(rotateSeed))
       //  decelerate()
@@ -56,11 +61,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             seed.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 0))
         } else {
             if isDead == false {
-             seed.physicsBody?.velocity = CGVector(dx: 3, dy: 3)
+                seed.physicsBody?.velocity = CGVector(dx: 0.3, dy: 0.3)
            // seed.speed = 5
               seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.5))
-              seed.physicsBody?.applyTorque(CGFloat(0.005))
-                seed.physicsBody?.applyForce(CGVector(dx: 1.5, dy: 1.5))
+              seed.physicsBody?.applyTorque(CGFloat(-0.006))
+                seed.physicsBody?.applyForce(CGVector(dx: 0.5, dy: 1.5))
              //   accelerate()
             // seed.run(SKAction.repeatForever(seedTorque))
 //                let value = seed.physicsBody!.velocity.dy * 200
@@ -75,21 +80,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        removeAction(forKey: "seedFlight")
-    }
-//
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//    }
+////
     override func update (_ currentTime: TimeInterval) {
         
         if isGameStarted == true {
-        createCanyon()
          if isDead == false {
                 enumerateChildNodes(withName: "rock", using: ({
                     (node, error) in
                     let bg = node as! SKSpriteNode
                     bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
                     if bg.position.x <= -bg.size.width {
-                        print(bg.position.x)
+                        //print(bg.position.x)
                         bg.removeFromParent()
                         self.nodeCount -= 1
                       //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
