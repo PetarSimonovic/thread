@@ -28,6 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var seed = SKSpriteNode()
     var repeatActionSeed = SKAction()
     var acceleration = CGFloat(1)
+    var nodeCount = 0
     
         
     
@@ -39,27 +40,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.seed = createSeed()
         self.addChild(seed)
-        let rotateSeed = SKAction.rotate(byAngle: CGFloat(-Double.pi), duration: 0.3)
-        seed.run(SKAction.repeatForever(rotateSeed))
-        decelerate()
+      //  let rotateSeed = SKAction.rotate(byAngle: CGFloat(-Double.pi), duration: 0.3)
+      //  seed.speed = 1
+       // seed.run(SKAction.repeatForever(rotateSeed))
+        //decelerate()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         if isGameStarted == false {
             isGameStarted = true
             seed.physicsBody?.affectedByGravity = true
-            seed.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-            seed.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 20))
+           // seed.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            seed.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 0))
         } else {
             if isDead == false {
-                seed.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-//                let moveSeed = SKAction.moveBy(x: 10, y: 10, duration: 0.1)
-                seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 5))
-                //seed.physicsBody?.applyTorque(CGFloat(100))
-                accelerate()
-         //     seed.run(SKAction.repeatForever(moveSeed), withKey: "seedFlight")
+                seed.physicsBody?.velocity = CGVector(dx: 0.5, dy: 0.5)
+           // seed.speed = 5
+                seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.5))
+                //seed.physicsBody?.applyTorque(CGFloat(-1))
+                //accelerate()
             // seed.run(SKAction.repeatForever(seedTorque))
-
+//                let value = seed.physicsBody!.velocity.dy * 200
+//                let rotate = SKAction.rotate(byAngle: value, duration: 0.1)
+//
+//                    seed.run(rotate)
+            let rotate = SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 0.3)
+            seed.run(rotate)
             }
         }
         
@@ -73,19 +79,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update (_ currentTime: TimeInterval) {
         
         if isGameStarted == true {
-        createRock()
+        createCanyon()
          if isDead == false {
-                enumerateChildNodes(withName: "background", using: ({
+                enumerateChildNodes(withName: "rock", using: ({
                     (node, error) in
                     let bg = node as! SKSpriteNode
-                    bg.position = CGPoint(x: bg.position.x - (self.speed + self.acceleration), y: bg.position.y)
+                    bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
                     if bg.position.x <= -bg.size.width {
                         print(bg.position.x)
                         bg.removeFromParent()
-                        self.rockNode -= 1
+                        self.nodeCount -= 1
                       //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
                     }
                 }))
+            let value = seed.physicsBody!.velocity.dy * 0.003
+                let rotate = SKAction.rotate(byAngle: value, duration: 0.3)
+
+                seed.run(rotate)
             }
         }
 //
