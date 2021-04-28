@@ -56,19 +56,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             seed.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 0))
         } else {
             if isDead == false {
-                seed.physicsBody?.velocity = CGVector(dx: 1, dy: 0.5)
+             seed.physicsBody?.velocity = CGVector(dx: 3, dy: 3)
            // seed.speed = 5
-                seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.5))
-              seed.physicsBody?.applyTorque(CGFloat(0.0001))
-                seed.physicsBody?.applyForce(CGVector(dx: 0.2, dy: 0.2))
+              seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.5))
+              seed.physicsBody?.applyTorque(CGFloat(0.004))
+              seed.physicsBody?.applyForce(CGVector(dx: 2, dy: 2))
              //   accelerate()
             // seed.run(SKAction.repeatForever(seedTorque))
 //                let value = seed.physicsBody!.velocity.dy * 200
 //                let rotate = SKAction.rotate(byAngle: value, duration: 0.1)
 //
 //                    seed.run(rotate)
-            let rotate = SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 0.3)
-            seed.run(rotate)
+          //  let rotate = SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 0.3)
+           // seed.run(rotate)
             }
         }
         
@@ -95,12 +95,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                       //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
                     }
                 }))
-            let value = seed.physicsBody!.velocity.dy * 0.003
-            seed.physicsBody?.applyTorque(CGFloat(0.0001))
+          //  let value = seed.physicsBody!.velocity.dy * 0.01
+           // seed.physicsBody?.applyTorque(CGFloat(0.0001))
 
-                let rotate = SKAction.rotate(byAngle: value, duration: 0.3)
+             //   let rotate = SKAction.rotate(byAngle: value, duration: 0.3)
 
-                seed.run(rotate)
+               // seed.run(rotate)
             }
         }
 //
