@@ -114,9 +114,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enumerateChildNodes(withName: "rock", using: ({
                     (node, error) in
                     let bg = node as! SKSpriteNode
-                    bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
-                    if bg.position.x <= -bg.size.width {
-                        //print(bg.position.x)
+//                    bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
+                    if bg.position.y <= -bg.size.height {
+                        print("off screen")
                         bg.removeFromParent()
                         self.nodeCount -= 1
                       //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
