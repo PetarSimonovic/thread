@@ -29,6 +29,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var repeatActionSeed = SKAction()
     var acceleration = CGFloat(1)
     var nodeCount = 0
+    var isRight : Bool = false
+    var isLeft : Bool = false
     
         
     
@@ -36,14 +38,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         setGravity()
-        energyField()
+      //  energyField()
 
         createScene()
         
         self.seed = createSeed()
         self.addChild(seed)
         
-        let makeRock = SKAction.sequence([SKAction.run(createCanyon), SKAction.wait(forDuration: 0.1)])
+        let makeRock = SKAction.sequence([SKAction.run(addRock), SKAction.wait(forDuration: 0.1)])
         
         self.run(SKAction.repeatForever(makeRock))
     
@@ -61,12 +63,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             seed.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 0))
         } else {
             if isDead == false {
+                for touch in (touches) {
+                    let location = touch.location(in: self)
+                    if (location.x < self.size.width / 2) {
+                            isLeft = true
+                            print("Left")
+                        }
+
+                    if (location.x > self.size.width/2){
+                            isRight = true
+                            print("Right")
+                        }
+                    }
+
                 seed.physicsBody?.velocity = CGVector(dx: 0.3, dy: 0.3)
            // seed.speed = 5
               seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.5))
               seed.physicsBody?.applyTorque(CGFloat(-0.006))
                 seed.physicsBody?.applyForce(CGVector(dx: 0.5, dy: 1.5))
-             //   accelerate()
+                seed.speed += 0.01
+
+             //   accelerate(
             // seed.run(SKAction.repeatForever(seedTorque))
 //                let value = seed.physicsBody!.velocity.dy * 200
 //                let rotate = SKAction.rotate(byAngle: value, duration: 0.1)
