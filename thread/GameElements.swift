@@ -51,6 +51,7 @@ extension GameScene {
               rock.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
               rock.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
               rock.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
+            rock.physicsBody?.linearDamping = 0.3
               rock.physicsBody?.isDynamic = true
               rock.physicsBody?.affectedByGravity = true
             rock.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
