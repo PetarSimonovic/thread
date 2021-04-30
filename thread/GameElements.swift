@@ -12,6 +12,8 @@ struct CollisionBitMask {
     static let rockCategory:UInt32 = 0x1 << 1
     static let loopCategory:UInt32 = 0x1 << 2
     static let energyCategory:UInt32 = 0x1 << 3
+    static let wallCategory:UInt32 = 0x1 << 4
+
 }
 
 extension GameScene {
@@ -30,9 +32,8 @@ extension GameScene {
         // Add collision masks
         
         seed.physicsBody?.categoryBitMask = CollisionBitMask.seedCategory
-        seed.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory
-        seed.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.loopCategory
-        
+        seed.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory | CollisionBitMask.wallCategory
+        seed.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.wallCategory
         seed.physicsBody?.affectedByGravity = false
         seed.physicsBody?.isDynamic = true
     
@@ -40,6 +41,7 @@ extension GameScene {
     
         
     }
+
     
     
     

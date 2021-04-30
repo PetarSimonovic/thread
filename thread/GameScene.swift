@@ -31,6 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var nodeCount = 0
     var isRight : Bool = false
     var isLeft : Bool = false
+    var bounce = false
     
         
     
@@ -38,7 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         setGravity()
-      //  energyField()
+       //  energyField()
 
         createScene()
         
@@ -67,7 +68,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let location = touch.location(in: self)
                     if (location.x < self.size.width / 2) {
                             isLeft = true
-                            print("Left")
                         seed.physicsBody?.velocity = CGVector(dx: -0.3, dy: 0.3)
 
                         seed.physicsBody?.applyImpulse(CGVector(dx: -0.5, dy: 0.5))
@@ -77,7 +77,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                     if (location.x > self.size.width/2){
                             isRight = true
-                            print("Right")
                         seed.physicsBody?.velocity = CGVector(dx: 0.3, dy: 0.3)
                         seed.physicsBody?.applyImpulse(CGVector(dx: 0.5, dy: 0.5))
                         seed.physicsBody?.applyTorque(CGFloat(-0.006))
@@ -139,15 +138,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createScene() {
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        self.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
+        self.physicsBody?.categoryBitMask = CollisionBitMask.wallCategory
         self.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
         self.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
         self.physicsBody?.isDynamic = false
         self.physicsBody?.affectedByGravity = false
-//
         self.physicsWorld.contactDelegate = self
         self.backgroundColor = SKColor (red: 80.0/255.0, green: 192.0/255.0, blue: 203.0/255.0, alpha: 1.0)
    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let firstBody = contact.bodyA
+        let secondBody = contact.bodyB
+        
+        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.rockCategory {
+            bounce = true
+        }
+            
+        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.rockCategory {
+            bounce = true
+        }
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        print("no contact")
+    }
 
 }
 
