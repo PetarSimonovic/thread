@@ -47,18 +47,18 @@ extension GameScene {
     
     func addRock() {
        let  element = Int.random(in: 1..<100)
-        if element <= 13 && nodeCount < 6 {
+        if element <= 13  {
           let rock = SKSpriteNode(imageNamed: "rock_\(element)")
               rock.physicsBody = SKPhysicsBody(texture: rock.texture!, size: rock.texture!.size())
               rock.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
-              rock.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
-              rock.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
+              rock.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory | CollisionBitMask.wallCategory | CollisionBitMask.rockCategory
+              rock.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory | CollisionBitMask.wallCategory | CollisionBitMask.rockCategory
             rock.physicsBody?.linearDamping = 0.3
               rock.physicsBody?.isDynamic = true
               rock.physicsBody?.affectedByGravity = true
             rock.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
               let xPos = CGFloat(arc4random() % UInt32(CGFloat(self.frame.width)))
-            rock.position = CGPoint(x: xPos, y: CGFloat(1.5) * self.frame.height  )
+            rock.position = CGPoint(x: xPos, y: CGFloat(1.5) * self.frame.height-400  )
             print(rock.position)
                   rock.name = "rock"
                 let randomScale = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
