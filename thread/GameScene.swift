@@ -62,9 +62,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(seed)
         oldPosition = seed.position
         
-     //   let makeRock = SKAction.sequence([SKAction.run(addRock), SKAction.wait(forDuration: 0.1)])
+        let makeRock = SKAction.sequence([SKAction.run(addRock), SKAction.wait(forDuration: 0.1)])
         
-    //    self.run(SKAction.repeatForever(makeRock))
+        self.run(SKAction.repeatForever(makeRock))
     
 
       //  seed.speed = 1
@@ -129,17 +129,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if isGameStarted == true {
          if isDead == false {
-//                enumerateChildNodes(withName: "rock", using: ({
-//                    (node, error) in
-//                    let bg = node as! SKSpriteNode
-////                    bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
-//                    if bg.position.y <= -bg.size.height {
-//                        print("off screen")
-//                        bg.removeFromParent()
-//                        self.nodeCount -= 1
-//                      //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
-//                    }
-//                }))
+                enumerateChildNodes(withName: "rock", using: ({
+                    (node, error) in
+                    let bg = node as! SKSpriteNode
+//                    bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
+                    if bg.position.y <= -bg.size.height {
+                        print("off screen")
+                        bg.removeFromParent()
+                        self.nodeCount -= 1
+                      //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
+                    }
+                }))
           //  let value = seed.physicsBody!.velocity.dy * 0.01
            // seed.physicsBody?.applyTorque(CGFloat(0.0001))
 
@@ -147,7 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                // seed.run(rotate)
             
-            drawWeb(from: oldPosition, to: seed.position)
+           // drawWeb(from: oldPosition, to: seed.position)
 
             
             }
@@ -178,6 +178,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.rockCategory || firstBody.categoryBitMask == CollisionBitMask.rockCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory{
             print("Rock Collision")
+            print("firstBody \(firstBody)")
+            print("secondBody \(secondBody)")
+            let rockPosition = (secondBody.node?.position)!
+            breakRock(rockPosition)
+            secondBody.node?.removeFromParent()
         }
             
         if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.wallCategory || firstBody.categoryBitMask == CollisionBitMask.wallCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory{
