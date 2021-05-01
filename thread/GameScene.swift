@@ -180,9 +180,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("Rock Collision")
             print("firstBody \(firstBody)")
             print("secondBody \(secondBody)")
-            let rockPosition = (secondBody.node?.position)!
-            breakRock(rockPosition)
-            secondBody.node?.removeFromParent()
+            
+            if secondBody.node?.position != nil {
+                let rockPosition = (secondBody.node?.position)!
+                breakRock(rockPosition)
+                secondBody.node?.removeFromParent()
+            }
         }
             
         if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.wallCategory || firstBody.categoryBitMask == CollisionBitMask.wallCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory{
