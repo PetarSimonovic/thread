@@ -19,6 +19,7 @@
 		0D9070322631B97600855895 /* threadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9070312631B97600855895 /* threadTests.swift */; };
 		0D90703D2631B97600855895 /* threadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D90703C2631B97600855895 /* threadUITests.swift */; };
 		0D90704E263321AA00855895 /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D90704D263321AA00855895 /* GameElements.swift */; };
+		0DD73F2C263EF2D700A22EC9 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD73F2B263EF2D700A22EC9 /* StartScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		0D90703C2631B97600855895 /* threadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = threadUITests.swift; sourceTree = "<group>"; };
 		0D90703E2631B97600855895 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D90704D263321AA00855895 /* GameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
+		0DD73F2B263EF2D700A22EC9 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				0D9070232631B97500855895 /* Main.storyboard */,
 				0D9070262631B97600855895 /* Assets.xcassets */,
 				0D9070282631B97600855895 /* Info.plist */,
+				0DD73F2B263EF2D700A22EC9 /* StartScreen.swift */,
 			);
 			path = thread;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			files = (
 				0D90704E263321AA00855895 /* GameElements.swift in Sources */,
 				0D9070202631B97500855895 /* GameScene.swift in Sources */,
+				0DD73F2C263EF2D700A22EC9 /* StartScreen.swift in Sources */,
 				0D9070222631B97500855895 /* GameViewController.swift in Sources */,
 				0D90701A2631B97500855895 /* AppDelegate.swift in Sources */,
 			);

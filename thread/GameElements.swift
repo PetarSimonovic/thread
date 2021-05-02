@@ -19,8 +19,8 @@ extension GameScene {
     func createSeed() -> SKSpriteNode {
         // Assign image and position
         let seed = SKSpriteNode(imageNamed: "threadship")
-        seed.size = CGSize(width: 20, height: 20)
-        seed.position = CGPoint(x: self.frame.midX, y:self.frame.midY)
+        seed.size = CGSize(width: 50, height: 50)
+        seed.position = CGPoint(x: self.frame.midX * 1.45, y:self.frame.midY)
         
         // Asign physics
         seed.physicsBody = SKPhysicsBody(texture: seed.texture!, size: seed.size)
@@ -45,6 +45,26 @@ extension GameScene {
       addRock()
     }
     
+    func displayTitle() -> SKSpriteNode {
+        
+        let title = SKSpriteNode(imageNamed: "threadtitle")
+        title.position = CGPoint(x: self.frame.midX, y:self.frame.midY)
+        title.setScale(0.8)
+        title.name = "title"
+        
+        return title
+        
+    }
+    
+    func removeTitle() {
+        let fade = SKAction.fadeOut(withDuration: 3)
+        let scaleSeed = SKAction.scaleX(to: 0.4, y: 0.4, duration: 1)
+        //seed.physicsBody?.applyTorque(CGFloat(-0.1))
+        seed.run(scaleSeed)
+        title.run(fade)
+    }
+    
+    
     
     func addRock() {
        let  element = Int.random(in: 1..<50)
@@ -63,6 +83,11 @@ extension GameScene {
             let randomScale = CGFloat(Float.random(in: 0.5...0.8))
                 rock.setScale(randomScale)
                 self.addChild(rock)
+            let time = Float.random(in: 1...3)
+            let spin = [Double.pi, -Double.pi].randomElement()!
+            let rotate = SKAction.rotate(byAngle: CGFloat(spin), duration: TimeInterval(time))
+            rock.run(SKAction.repeatForever(rotate))
+
                nodeCount += 1
     }
     }
@@ -106,7 +131,7 @@ extension GameScene {
         physicsWorld.gravity = CGVector(dx:0, dy: 0);
         let gravityVector = vector_float3(0,-1,0);
         let gravityNode = SKFieldNode.linearGravityField(withVector: gravityVector)
-        gravityNode.strength = 0.8
+        gravityNode.strength = 0.6
         addChild(gravityNode)
     }
     
