@@ -9,7 +9,7 @@ import SpriteKit
 
 struct CollisionBitMask {
     static let seedCategory:UInt32 = 0x1 << 0
-    static let rockCategory:UInt32 = 0x1 << 1
+    static let seedPodCategory:UInt32 = 0x1 << 1
     static let loopCategory:UInt32 = 0x1 << 2
     static let energyCategory:UInt32 = 0x1 << 3
     static let wallCategory:UInt32 = 0x1 << 4
@@ -32,8 +32,8 @@ extension GameScene {
         // Add collision masks
         
         seed.physicsBody?.categoryBitMask = CollisionBitMask.seedCategory
-        seed.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory | CollisionBitMask.wallCategory
-        seed.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.wallCategory
+        seed.physicsBody?.collisionBitMask = CollisionBitMask.seedPodCategory | CollisionBitMask.wallCategory
+        seed.physicsBody?.contactTestBitMask = CollisionBitMask.seedPodCategory | CollisionBitMask.wallCategory
         seed.physicsBody?.affectedByGravity = false
         seed.physicsBody?.isDynamic = true
     
@@ -45,35 +45,35 @@ extension GameScene {
     
     
     
-    func addRock() {
+    func seedPod() {
        let  element = Int.random(in: 1..<100)
-        if element <= 13  {
-          let rock = SKSpriteNode(imageNamed: "rock_\(element)")
-              rock.physicsBody = SKPhysicsBody(texture: rock.texture!, size: rock.texture!.size())
-              rock.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
-              rock.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory | CollisionBitMask.rockCategory
-              rock.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory | CollisionBitMask.rockCategory
-              rock.physicsBody?.linearDamping = 0.3
-              rock.physicsBody?.isDynamic = true
-              rock.physicsBody?.affectedByGravity = true
-            rock.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
+        if element <= 1  {
+          let seedPod = SKSpriteNode(imageNamed: "seedpod")
+              seedPod.physicsBody = SKPhysicsBody(texture: seedPod.texture!, size: seedPod.texture!.size())
+              seedPod.physicsBody?.categoryBitMask = CollisionBitMask.seedPodCategory
+              seedPod.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory | CollisionBitMask.seedPodCategory
+              seedPod.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory | CollisionBitMask.seedPodCategory
+              seedPod.physicsBody?.linearDamping = 0.3
+              seedPod.physicsBody?.isDynamic = true
+              seedPod.physicsBody?.affectedByGravity = true
+            seedPod.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
               let xPos = CGFloat(arc4random() % UInt32(CGFloat(self.frame.width)))
-            rock.position = CGPoint(x: xPos, y: CGFloat(1.5) * self.frame.height * 1.5  )
-            print(rock.position)
-                  rock.name = "rock"
-            let randomScale = CGFloat(Float.random(in: 0.5..<0.7))
-                print("scale: \(randomScale)")
-                rock.setScale(randomScale)
-                self.addChild(rock)
-            let time = Float.random(in: 8...20)
-            let spin = [Double.pi, -Double.pi].randomElement()!
-            let rotate = SKAction.rotate(byAngle: CGFloat(spin), duration: TimeInterval(time))
-            rock.run(SKAction.repeatForever(rotate))
-               nodeCount += 1
+            seedPod.position = CGPoint(x: xPos, y: CGFloat(1.5) * self.frame.height * 1.5  )
+            print(seedPod.position)
+                  seedPod.name = "seedPod"
+//            let randomScale = CGFloat(Float.random(in: 0.5..<0.7))
+//                print("scale: \(randomScale)")
+            seedPod.setScale(0.5)
+                self.addChild(seedPod)
+//            let time = Float.random(in: 8...20)
+//            let spin = [Double.pi, -Double.pi].randomElement()!
+//            let rotate = SKAction.rotate(byAngle: CGFloat(spin), duration: TimeInterval(time))
+//            seedPod.run(SKAction.repeatForever(rotate))
+//               nodeCount += 1
     }
     }
     
-    func breakRock(_ rockPosition: CGPoint) {
+    func breakSeedPod(_ rockPosition: CGPoint) {
       print("x \(rockPosition)")
     }
     

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0D62B39D2639A01800EDF524 /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D62B39B2639A01800EDF524 /* FireParticles.sks */; };
-		0D62B39E2639A01800EDF524 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D62B39C2639A01800EDF524 /* Assets.xcassets */; };
 		0D90701A2631B97500855895 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9070192631B97500855895 /* AppDelegate.swift */; };
 		0D90701C2631B97500855895 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D90701B2631B97500855895 /* GameScene.sks */; };
 		0D90701E2631B97500855895 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D90701D2631B97500855895 /* Actions.sks */; };
@@ -40,7 +39,6 @@
 
 /* Begin PBXFileReference section */
 		0D62B39B2639A01800EDF524 /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticles.sks; sourceTree = "<group>"; };
-		0D62B39C2639A01800EDF524 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D9070162631B97500855895 /* thread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D9070192631B97500855895 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D90701B2631B97500855895 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				0D62B39B2639A01800EDF524 /* FireParticles.sks */,
-				0D62B39C2639A01800EDF524 /* Assets.xcassets */,
 				0D9070182631B97500855895 /* thread */,
 				0D9070302631B97600855895 /* threadTests */,
 				0D90703B2631B97600855895 /* threadUITests */,
@@ -247,7 +244,6 @@
 				0D90701C2631B97500855895 /* GameScene.sks in Resources */,
 				0D62B39D2639A01800EDF524 /* FireParticles.sks in Resources */,
 				0D9070272631B97600855895 /* Assets.xcassets in Resources */,
-				0D62B39E2639A01800EDF524 /* Assets.xcassets in Resources */,
 				0D90701E2631B97500855895 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

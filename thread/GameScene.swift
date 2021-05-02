@@ -60,11 +60,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.seed = createSeed()
         self.addChild(seed)
-        oldPosition = seed.position
+     //   oldPosition = seed.position
         
-        let makeRock = SKAction.sequence([SKAction.run(addRock), SKAction.wait(forDuration: 0.1)])
+        let seedPod = SKAction.sequence([SKAction.run(seedPod), SKAction.wait(forDuration: 0.1)])
         
-        self.run(SKAction.repeatForever(makeRock))
+        self.run(SKAction.repeatForever(seedPod))
     
 
       //  seed.speed = 1
@@ -129,7 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if isGameStarted == true {
          if isDead == false {
-                enumerateChildNodes(withName: "rock", using: ({
+                enumerateChildNodes(withName: "seedPod", using: ({
                     (node, error) in
                     let bg = node as! SKSpriteNode
 //                    bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
@@ -163,8 +163,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody?.categoryBitMask = CollisionBitMask.wallCategory
         self.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
-        self.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory
-        self.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory
+        self.physicsBody?.collisionBitMask = CollisionBitMask.seedPodCategory
+        self.physicsBody?.collisionBitMask = CollisionBitMask.seedPodCategory
         self.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
         self.physicsBody?.isDynamic = false
         self.physicsBody?.affectedByGravity = false
@@ -176,14 +176,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
         
-        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.rockCategory || firstBody.categoryBitMask == CollisionBitMask.rockCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory{
+        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.seedPodCategory {
             print("Rock Collision")
             print("firstBody \(firstBody)")
             print("secondBody \(secondBody)")
             
             if secondBody.node?.position != nil {
-                let rockPosition = (secondBody.node?.position)!
-                breakRock(rockPosition)
+                let seedPodPosition = (secondBody.node?.position)!
+                breakSeedPod(seedPodPosition)
                 secondBody.node?.removeFromParent()
             }
         }
