@@ -47,6 +47,7 @@ extension GameScene {
     
     func seedPod() {
        let  element = Int.random(in: 1..<100)
+        print(element)
         if element <= 1  {
           let seedPod = SKSpriteNode(imageNamed: "seedpod")
               seedPod.physicsBody = SKPhysicsBody(texture: seedPod.texture!, size: seedPod.texture!.size())
@@ -73,8 +74,12 @@ extension GameScene {
     }
     }
     
-    func breakSeedPod(_ rockPosition: CGPoint) {
-      print("x \(rockPosition)")
+    func breakSeedPod(_ seedPosition: CGPoint) {
+      print("x \(seedPosition)")
+        if let seedPodParticles = SKEmitterNode(fileNamed: "seedPodExplode") {
+            seedPodParticles.position = seedPosition
+            addChild(seedPodParticles)
+    }
     }
     
     func energyField() {
