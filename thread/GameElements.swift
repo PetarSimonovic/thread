@@ -19,8 +19,9 @@ extension GameScene {
     func createSeed() -> SKSpriteNode {
         // Assign image and position
         let seed = SKSpriteNode(imageNamed: "threadship")
-        seed.size = CGSize(width: 50, height: 50)
-        seed.position = CGPoint(x: self.frame.midX * 1.45, y:self.frame.midY)
+        seed.size = CGSize(width: 20, height: 20)
+        seed.position = CGPoint(x: self.frame.midX * 1.22, y:self.frame.midY)
+
         
         // Asign physics
         seed.physicsBody = SKPhysicsBody(texture: seed.texture!, size: seed.size)
@@ -49,7 +50,7 @@ extension GameScene {
         
         let title = SKSpriteNode(imageNamed: "threadtitle")
         title.position = CGPoint(x: self.frame.midX, y:self.frame.midY)
-        title.setScale(0.8)
+        title.setScale(0.4)
         title.name = "title"
         
         return title
@@ -58,9 +59,12 @@ extension GameScene {
     
     func removeTitle() {
         let fade = SKAction.fadeOut(withDuration: 3)
-        let scaleSeed = SKAction.scaleX(to: 0.4, y: 0.4, duration: 1)
+      //  let scaleSeed = SKAction.scaleX(to: 0.5, y: 0.5, duration: 1)
+        let moveSeed =  SKAction.move(to: CGPoint(x: self.frame.midX, y: self.frame.midY), duration: 1)
         //seed.physicsBody?.applyTorque(CGFloat(-0.1))
-        seed.run(scaleSeed)
+        //seed.run(scaleSeed)
+        seed.physicsBody?.applyTorque(CGFloat(-0.006))
+        seed.run(moveSeed)
         title.run(fade)
     }
     
@@ -134,6 +138,16 @@ extension GameScene {
         gravityNode.strength = 0.6
         addChild(gravityNode)
     }
+    
+    func restartGame(){
+        self.removeAllChildren()
+        self.removeAllActions()
+        isDead = false
+        isGameStarted = false
+        score = 0
+        createScene()
+    }
+
     
 }
 

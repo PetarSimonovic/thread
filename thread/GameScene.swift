@@ -57,18 +57,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             removeTitle()
             setGravity()
             let makeRock = SKAction.sequence([SKAction.run(createCanyon), SKAction.wait(forDuration: 0.1)])
-            self.run(SKAction.repeatForever(makeRock))
+          self.run(SKAction.repeatForever(makeRock))
             isGameStarted = true
             seed.physicsBody?.affectedByGravity = true
            // seed.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-            seed.physicsBody?.applyImpulse(CGVector(dx:0, dy: 0))
+         //   seed.physicsBody?.applyImpulse(CGVector(dx:0, dy: 0))
         } else {
             if isDead == false {
-                seed.physicsBody?.velocity = CGVector(dx: 1, dy: 0.5)
+                seed.physicsBody?.velocity = CGVector(dx: 0.2, dy: 0.2)
            // seed.speed = 5
-              seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.5))
+              seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.25))
               seed.physicsBody?.applyTorque(CGFloat(-0.006))
                 seed.physicsBody?.applyForce(CGVector(dx: 0.5, dy: 1.5))
+
              //   accelerate()
             // seed.run(SKAction.repeatForever(seedTorque))
 //                let value = seed.physicsBody!.velocity.dy * 200
@@ -103,11 +104,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }))
             if seed.position.x < 0 || seed.position.y < 0 {
                 isDead = true
+                seed.removeFromParent()
             }
             
             if isDead == true && self.nodeCount == 0 {
-                    gameOver()
-                }
+               gameOver()
+               restartGame()
+            }
                 
             
 //
