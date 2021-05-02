@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "rock_3.png",
+      "filename" : "rock_4.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "rock_3-1.png",
+      "filename" : "rock_4-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "rock_3-2.png",
+      "filename" : "rock_4-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
