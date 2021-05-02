@@ -8,9 +8,9 @@
 import SpriteKit
 
 struct CollisionBitMask {
-    static let seedCategory:UInt32 = 0x1 << 0
+    static let gardenerCategory:UInt32 = 0x1 << 0
     static let seedPodCategory:UInt32 = 0x1 << 1
-    static let loopCategory:UInt32 = 0x1 << 2
+    static let seedCategory:UInt32 = 0x1 << 2
     static let groundCategory:UInt32 = 0x1 << 3
     static let wallCategory:UInt32 = 0x1 << 4
 
@@ -18,26 +18,26 @@ struct CollisionBitMask {
 
 extension GameScene {
     
-    func createSeed() -> SKSpriteNode {
+    func createGardener() -> SKSpriteNode {
         // Assign image and position
-        let seed = SKSpriteNode(imageNamed: "seed")
-        seed.size = CGSize(width: 20, height: 20)
-        seed.position = CGPoint(x: self.frame.midX, y:self.frame.midY)
+        let gardener = SKSpriteNode(imageNamed: "gardener")
+        gardener.size = CGSize(width: 20, height: 20)
+        gardener.position = CGPoint(x: self.frame.midX, y:self.frame.midY)
         
         // Asign physics
-        seed.physicsBody = SKPhysicsBody(texture: seed.texture!, size: seed.size)
-        seed.physicsBody?.linearDamping = 0.55 // simulates air friction (value between 0 and 1)
-        seed.physicsBody?.restitution = 0.8 // how much energy object loses when it hits another (value between 0 and 1)
+        gardener.physicsBody = SKPhysicsBody(texture: gardener.texture!, size: gardener.size)
+        gardener.physicsBody?.linearDamping = 0.55 // simulates air friction (value between 0 and 1)
+        gardener.physicsBody?.restitution = 0.8 // how much energy object loses when it hits another (value between 0 and 1)
         
         // Add collision masks
         
-        seed.physicsBody?.categoryBitMask = CollisionBitMask.seedCategory
-        seed.physicsBody?.collisionBitMask = CollisionBitMask.seedPodCategory | CollisionBitMask.wallCategory | CollisionBitMask.groundCategory
-        seed.physicsBody?.contactTestBitMask = CollisionBitMask.seedPodCategory |  CollisionBitMask.groundCategory | CollisionBitMask.wallCategory
-        seed.physicsBody?.affectedByGravity = false
-        seed.physicsBody?.isDynamic = true
+        gardener.physicsBody?.categoryBitMask = CollisionBitMask.gardenerCategory
+        gardener.physicsBody?.collisionBitMask = CollisionBitMask.seedPodCategory | CollisionBitMask.wallCategory | CollisionBitMask.groundCategory
+        gardener.physicsBody?.contactTestBitMask = CollisionBitMask.seedPodCategory |  CollisionBitMask.groundCategory | CollisionBitMask.wallCategory
+        gardener.physicsBody?.affectedByGravity = false
+        gardener.physicsBody?.isDynamic = true
     
-        return seed
+        return gardener
     
         
     }
@@ -52,8 +52,8 @@ extension GameScene {
           let seedPod = SKSpriteNode(imageNamed: "seedpod")
               seedPod.physicsBody = SKPhysicsBody(texture: seedPod.texture!, size: seedPod.texture!.size())
               seedPod.physicsBody?.categoryBitMask = CollisionBitMask.seedPodCategory
-              seedPod.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory | CollisionBitMask.seedPodCategory | CollisionBitMask.groundCategory
-              seedPod.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory | CollisionBitMask.seedPodCategory | CollisionBitMask.groundCategory
+              seedPod.physicsBody?.collisionBitMask = CollisionBitMask.gardenerCategory | CollisionBitMask.seedPodCategory | CollisionBitMask.groundCategory
+              seedPod.physicsBody?.contactTestBitMask = CollisionBitMask.gardenerCategory | CollisionBitMask.seedPodCategory | CollisionBitMask.groundCategory
               seedPod.physicsBody?.linearDamping = 0.3
               seedPod.physicsBody?.isDynamic = true
               seedPod.physicsBody?.affectedByGravity = true
@@ -66,7 +66,7 @@ extension GameScene {
 //                print("scale: \(randomScale)")
             seedPod.setScale(0.3)
                 self.addChild(seedPod)
-            let time = Float.random(in: 8...20)
+            let time = Float.random(in: 1...3)
             let spin = [Double.pi, -Double.pi].randomElement()!
             let rotate = SKAction.rotate(byAngle: CGFloat(spin), duration: TimeInterval(time))
             seedPod.run(SKAction.repeatForever(rotate))
@@ -82,14 +82,31 @@ extension GameScene {
     }
     }
     
+    func createSeed (_ seedPosition: CGPoint) {
+        let seed = SKSpriteNode(imageNamed: "seed")
+        seed.physicsBody = SKPhysicsBody(texture: seed.texture!, size: seed.texture!.size())
+        seed.physicsBody?.categoryBitMask = CollisionBitMask.seedPodCategory
+            seed.physicsBody?.collisionBitMask = CollisionBitMask.gardenerCategory | CollisionBitMask.groundCategory
+        seed.physicsBody?.contactTestBitMask = CollisionBitMask.gardenerCategory | CollisionBitMask.groundCategory
+        seed.physicsBody?.affectedByGravity = true
+        seed.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
+        seed.position = seedPosition
+        seed.name = "seed"
+        seed.setScale(0.3)
+        addChild(seed)
+        seed.physicsBody?.applyImpulse(CGVector(dx: -5, dy: 5))
+        seed.physicsBody?.applyTorque(CGFloat(1))
+
+    }
+    
     func createGround() {
         let ground = SKSpriteNode()
         ground.size = CGSize(width: self.frame.width, height: 30)
         ground.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width, height: 30))
         ground.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width, height: 30))
         ground.physicsBody?.categoryBitMask = CollisionBitMask.groundCategory
-        ground.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory | CollisionBitMask.seedPodCategory
-        ground.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory | CollisionBitMask.seedPodCategory
+        ground.physicsBody?.collisionBitMask = CollisionBitMask.gardenerCategory | CollisionBitMask.seedPodCategory
+        ground.physicsBody?.contactTestBitMask = CollisionBitMask.gardenerCategory | CollisionBitMask.seedPodCategory
         ground.physicsBody?.isDynamic = false
         ground.physicsBody?.affectedByGravity = false
         ground.position = CGPoint(x: self.frame.width/2, y: 10)

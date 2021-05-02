@@ -25,7 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var wallPair = SKNode()
     var moveAndRemove = SKAction()
     var rockNode = 0
-    var seed = SKSpriteNode()
+    var gardener = SKSpriteNode()
     var repeatActionSeed = SKAction()
     var acceleration = CGFloat(1)
     var nodeCount = 0
@@ -45,7 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         line.lineWidth = 3
         line.strokeColor = .yellow
         self.addChild(line)
-        oldPosition = seed.position
+        oldPosition = gardener.position
     }
 
 
@@ -59,8 +59,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createScene()
         createGround()
         
-        self.seed = createSeed()
-        self.addChild(seed)
+        self.gardener = createGardener()
+        self.addChild(gardener)
      //   oldPosition = seed.position
         
         let seedPod = SKAction.sequence([SKAction.run(createSeedPod), SKAction.wait(forDuration: 0.1)])
@@ -78,28 +78,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         if isGameStarted == false {
             isGameStarted = true
-            seed.physicsBody?.affectedByGravity = true
+            gardener.physicsBody?.affectedByGravity = true
            // seed.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-            seed.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 0))
+            gardener.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 0))
         } else {
             if isDead == false {
                 for touch in (touches) {
                     let location = touch.location(in: self)
                     if (location.x < self.size.width / 2) {
                             isLeft = true
-                        seed.physicsBody?.velocity = CGVector(dx: -0.3, dy: 0.3)
+                        gardener.physicsBody?.velocity = CGVector(dx: -0.3, dy: 0.3)
 
-                        seed.physicsBody?.applyImpulse(CGVector(dx: -0.5, dy: 0.5))
-                        seed.physicsBody?.applyTorque(CGFloat(0.006))
-                        seed.physicsBody?.applyForce(CGVector(dx: -1, dy: 1.5))
+                        gardener.physicsBody?.applyImpulse(CGVector(dx: -0.5, dy: 0.5))
+                        gardener.physicsBody?.applyTorque(CGFloat(0.006))
+                        gardener.physicsBody?.applyForce(CGVector(dx: -1, dy: 1.5))
                         }
 
                     if (location.x > self.size.width/2){
                             isRight = true
-                        seed.physicsBody?.velocity = CGVector(dx: 0.3, dy: 0.3)
-                        seed.physicsBody?.applyImpulse(CGVector(dx: 0.5, dy: 0.5))
-                        seed.physicsBody?.applyTorque(CGFloat(-0.006))
-                        seed.physicsBody?.applyForce(CGVector(dx: 1, dy: 1.5))
+                        gardener.physicsBody?.velocity = CGVector(dx: 0.3, dy: 0.3)
+                        gardener.physicsBody?.applyImpulse(CGVector(dx: 0.5, dy: 0.5))
+                        gardener.physicsBody?.applyTorque(CGFloat(-0.006))
+                        gardener.physicsBody?.applyForce(CGVector(dx: 1, dy: 1.5))
                         }
                     }
 
@@ -163,10 +163,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createScene() {
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody?.categoryBitMask = CollisionBitMask.wallCategory
-        self.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
+        self.physicsBody?.collisionBitMask = CollisionBitMask.gardenerCategory
         self.physicsBody?.collisionBitMask = CollisionBitMask.seedPodCategory
         self.physicsBody?.collisionBitMask = CollisionBitMask.seedPodCategory
-        self.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.gardenerCategory
         self.physicsBody?.isDynamic = false
         self.physicsBody?.affectedByGravity = false
         self.physicsWorld.contactDelegate = self
@@ -179,7 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // SEEDPOD COLLISION
         
-        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.seedPodCategory || firstBody.categoryBitMask == CollisionBitMask.seedPodCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory || firstBody.categoryBitMask == CollisionBitMask.groundCategory && secondBody.categoryBitMask == CollisionBitMask.seedPodCategory || firstBody.categoryBitMask == CollisionBitMask.seedPodCategory && secondBody.categoryBitMask == CollisionBitMask.groundCategory {
+        if firstBody.categoryBitMask == CollisionBitMask.gardenerCategory && secondBody.categoryBitMask == CollisionBitMask.seedPodCategory || firstBody.categoryBitMask == CollisionBitMask.seedPodCategory && secondBody.categoryBitMask == CollisionBitMask.gardenerCategory || firstBody.categoryBitMask == CollisionBitMask.groundCategory && secondBody.categoryBitMask == CollisionBitMask.seedPodCategory || firstBody.categoryBitMask == CollisionBitMask.seedPodCategory && secondBody.categoryBitMask == CollisionBitMask.groundCategory {
             print("SeedPod Collision")
             print("firstBody \(firstBody)")
             print("secondBody \(secondBody)")
@@ -191,7 +191,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
             
-        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.wallCategory || firstBody.categoryBitMask == CollisionBitMask.wallCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory{
+        if firstBody.categoryBitMask == CollisionBitMask.gardenerCategory && secondBody.categoryBitMask == CollisionBitMask.wallCategory || firstBody.categoryBitMask == CollisionBitMask.wallCategory && secondBody.categoryBitMask == CollisionBitMask.gardenerCategory{
             print("Wall Collision")
         }
     }
