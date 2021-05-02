@@ -140,6 +140,7 @@ extension GameScene {
     }
     
     func restartGame(){
+        print("Restarting!")
         self.removeAllChildren()
         self.removeAllActions()
         isDead = false

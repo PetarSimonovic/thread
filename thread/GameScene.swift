@@ -42,10 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         createScene()
         
-        self.seed = createSeed()
-        self.title = displayTitle()
-        self.addChild(seed)
-        self.addChild(title)
+      
 
       //  seed.speed = 1
        // seed.run(SKAction.repeatForever(rotateSeed))
@@ -132,6 +129,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //
         self.physicsWorld.contactDelegate = self
         self.backgroundColor = SKColor (red: 80.0/255.0, green: 192.0/255.0, blue: 203.0/255.0, alpha: 1.0)
+        self.seed = createSeed()
+        self.title = displayTitle()
+        self.addChild(seed)
+        self.addChild(title)
    }
 
 }
