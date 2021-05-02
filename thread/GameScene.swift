@@ -57,12 +57,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
        //  energyField()
 
         createScene()
+        createGround()
         
         self.seed = createSeed()
         self.addChild(seed)
      //   oldPosition = seed.position
         
-        let seedPod = SKAction.sequence([SKAction.run(seedPod), SKAction.wait(forDuration: 0.1)])
+        let seedPod = SKAction.sequence([SKAction.run(createSeedPod), SKAction.wait(forDuration: 0.1)])
         
         self.run(SKAction.repeatForever(seedPod))
     
@@ -169,15 +170,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody?.isDynamic = false
         self.physicsBody?.affectedByGravity = false
         self.physicsWorld.contactDelegate = self
-        self.backgroundColor = SKColor (red: 80.0/255.0, green: 192.0/255.0, blue: 203.0/255.0, alpha: 1.0)
+        self.backgroundColor = SKColor (red: 22/255.0, green: 22/255.0, blue: 29/255.0, alpha: 1.0)
    }
     
     func didBegin(_ contact: SKPhysicsContact) {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
         
-        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.seedPodCategory {
-            print("Rock Collision")
+        // SEEDPOD COLLISION
+        
+        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.seedPodCategory || firstBody.categoryBitMask == CollisionBitMask.seedPodCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory || firstBody.categoryBitMask == CollisionBitMask.groundCategory && secondBody.categoryBitMask == CollisionBitMask.seedPodCategory || firstBody.categoryBitMask == CollisionBitMask.seedPodCategory && secondBody.categoryBitMask == CollisionBitMask.groundCategory {
+            print("SeedPod Collision")
             print("firstBody \(firstBody)")
             print("secondBody \(secondBody)")
             
