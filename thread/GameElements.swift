@@ -18,7 +18,7 @@ extension GameScene {
     
     func createSeed() -> SKSpriteNode {
         // Assign image and position
-        let seed = SKSpriteNode(imageNamed: "seed")
+        let seed = SKSpriteNode(imageNamed: "threadship")
         seed.size = CGSize(width: 20, height: 20)
         seed.position = CGPoint(x: self.frame.midX, y:self.frame.midY)
         
@@ -47,8 +47,8 @@ extension GameScene {
     
     
     func addRock() {
-       let  element = Int.random(in: 1..<100)
-        if element <= 13 && nodeCount < 6 {
+       let  element = Int.random(in: 1..<50)
+        if element <= 6 && nodeCount < 9 && isDead == false {
           let rock = SKSpriteNode(imageNamed: "rock_\(element)")
               rock.physicsBody = SKPhysicsBody(texture: rock.texture!, size: rock.texture!.size())
               rock.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
@@ -60,7 +60,7 @@ extension GameScene {
               let height = CGFloat(arc4random() % UInt32(CGFloat(self.frame.height)))
             rock.position = CGPoint(x: CGFloat(1.5) * self.frame.width, y: height )
                   rock.name = "rock"
-                let randomScale = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+            let randomScale = CGFloat(Float.random(in: 0.5...0.8))
                 rock.setScale(randomScale)
                 self.addChild(rock)
                nodeCount += 1
@@ -77,10 +77,10 @@ extension GameScene {
         energy.physicsBody?.isDynamic = false
         energy.physicsBody?.affectedByGravity = false
         energy.position = CGPoint(x: 0, y: self.frame.height / 2)
-        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
-            fireParticles.position = energy.position
-            addChild(fireParticles)
-        }
+//        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
+//            fireParticles.position = energy.position
+//            addChild(fireParticles)
+//        }
 
            // nodeCount += 1
     }
@@ -96,7 +96,11 @@ extension GameScene {
 ////            acceleration += 0.1
 ////        }
 //    }
-//    
+//
+    
+    func gameOver() {
+        print("Game Over")
+    }
     
     func setGravity() {
         physicsWorld.gravity = CGVector(dx:0, dy: 0);
