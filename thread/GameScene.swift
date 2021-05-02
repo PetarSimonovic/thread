@@ -30,6 +30,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var repeatActionSeed = SKAction()
     var acceleration = CGFloat(1)
     var nodeCount = 0
+    var isRight : Bool = false
+    var isLeft : Bool = false
+    var distance = CGFloat(0.0)
+
     
 
     
@@ -61,11 +65,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
          //   seed.physicsBody?.applyImpulse(CGVector(dx:0, dy: 0))
         } else {
             if isDead == false {
-                seed.physicsBody?.velocity = CGVector(dx: 0.2, dy: 0.2)
-           // seed.speed = 5
-              seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.25))
-              seed.physicsBody?.applyTorque(CGFloat(-0.006))
-                seed.physicsBody?.applyForce(CGVector(dx: 0.5, dy: 1.5))
+                seed.physicsBody?.velocity = CGVector(dx: -0, dy: 0)
+
+                for touch in (touches) {
+                    let location = touch.location(in: self)
+                    if (location.x < self.size.width / 2) {
+                            isLeft = true
+                        seed.physicsBody?.velocity = CGVector(dx: -0.1, dy: 0.1)
+
+                        seed.physicsBody?.applyImpulse(CGVector(dx: -0.01, dy: 0.2))
+                        seed.physicsBody?.applyTorque(CGFloat(0.003))
+                       // seed.physicsBody?.applyForce(CGVector(dx: -1, dy: 1.5))
+                        }
+
+                    if (location.x > self.size.width/2){
+                            isRight = true
+                        seed.physicsBody?.velocity = CGVector(dx: 0.3, dy: 0.3)
+                        seed.physicsBody?.applyImpulse(CGVector(dx: 0.01, dy: 0.2))
+                        seed.physicsBody?.applyTorque(CGFloat(-0.003))
+//seed.physicsBody?.applyForce(CGVector(dx: 1, dy: 1.5))
+                        }
+                    }
 
              //   accelerate()
             // seed.run(SKAction.repeatForever(seedTorque))
@@ -87,6 +107,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update (_ currentTime: TimeInterval) {
         
         if isGameStarted == true {
+            acceleration = ((seed.physicsBody?.velocity.dx )!*1)/4
+//            print(acceleration)
+//            print(seed.position)
+
+
 
                 enumerateChildNodes(withName: "rock", using: ({
                     (node, error) in
@@ -97,14 +122,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         rock.removeFromParent()
                         self.nodeCount -= 1
                       //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
+                        self.distance += 0.001
+                        print(self.distance)
                     }
                 }))
-            if seed.position.x < 0 || seed.position.y < 0 {
+            if seed.position.x <= -seed.size.width || seed.position.y < 0 {
                 isDead = true
                 seed.removeFromParent()
             }
             
-            if isDead == true && self.nodeCount == 0 {
+            if isDead == true && nodeCount == 0 {
                gameOver()
                restartGame()
             }

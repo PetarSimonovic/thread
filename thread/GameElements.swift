@@ -20,7 +20,7 @@ extension GameScene {
         // Assign image and position
         let seed = SKSpriteNode(imageNamed: "threadship")
         seed.size = CGSize(width: 20, height: 20)
-        seed.position = CGPoint(x: self.frame.midX * 1.22, y:self.frame.midY)
+        seed.position = CGPoint(x: self.frame.midX + self.frame.midX/4.25, y:self.frame.midY)
 
         
         // Asign physics
@@ -76,18 +76,18 @@ extension GameScene {
           let rock = SKSpriteNode(imageNamed: "rock_\(element)")
               rock.physicsBody = SKPhysicsBody(texture: rock.texture!, size: rock.texture!.size())
               rock.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
-              rock.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
-              rock.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
+              rock.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory | CollisionBitMask.rockCategory
+              rock.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory | CollisionBitMask.rockCategory
               rock.physicsBody?.isDynamic = false
               rock.physicsBody?.affectedByGravity = false
             rock.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
               let height = CGFloat(arc4random() % UInt32(CGFloat(self.frame.height)))
             rock.position = CGPoint(x: CGFloat(1.5) * self.frame.width, y: height )
                   rock.name = "rock"
-            let randomScale = CGFloat(Float.random(in: 0.5...0.8))
+            let randomScale = CGFloat.random(in: (0.2 + distance)...(0.5 + distance))
                 rock.setScale(randomScale)
                 self.addChild(rock)
-            let time = Float.random(in: 1...3)
+            let time = Float.random(in: (0.5...1))
             let spin = [Double.pi, -Double.pi].randomElement()!
             let rotate = SKAction.rotate(byAngle: CGFloat(spin), duration: TimeInterval(time))
             rock.run(SKAction.repeatForever(rotate))
@@ -137,6 +137,7 @@ extension GameScene {
         let gravityNode = SKFieldNode.linearGravityField(withVector: gravityVector)
         gravityNode.strength = 0.6
         addChild(gravityNode)
+
     }
     
     func restartGame(){
@@ -146,6 +147,8 @@ extension GameScene {
         isDead = false
         isGameStarted = false
         score = 0
+        nodeCount = 0
+        acceleration = CGFloat(1)
         createScene()
     }
 
