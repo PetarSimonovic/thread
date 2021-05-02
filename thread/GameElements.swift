@@ -149,6 +149,7 @@ extension GameScene {
         score = 0
         nodeCount = 0
         acceleration = CGFloat(1)
+        distance = CGFloat(0.0)
         createScene()
     }
 
