@@ -11,7 +11,7 @@ struct CollisionBitMask {
     static let seedCategory:UInt32 = 0x1 << 0
     static let rockCategory:UInt32 = 0x1 << 1
     static let canyonCategory:UInt32 = 0x1 << 2
-    static let energyCategory:UInt32 = 0x1 << 3
+    static let fireflyCategory:UInt32 = 0x1 << 3
 }
 
 extension GameScene {
@@ -21,7 +21,7 @@ extension GameScene {
         let seed = SKSpriteNode(imageNamed: "threadship")
         seed.size = CGSize(width: 20, height: 20)
         print(self.frame.midX)
-        seed.position = CGPoint(x: self.frame.midX, y:self.frame.midY)
+        seed.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
 
         
         // Asign physics
@@ -32,8 +32,8 @@ extension GameScene {
         // Add collision masks
         
         seed.physicsBody?.categoryBitMask = CollisionBitMask.seedCategory
-        seed.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory
-        seed.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory
+        seed.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
+        seed.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory | CollisionBitMask.fireflyCategory
         seed.physicsBody?.affectedByGravity = false
         seed.physicsBody?.isDynamic = true
     
@@ -57,6 +57,7 @@ extension GameScene {
         ground.physicsBody?.isDynamic = false
         ground.physicsBody?.affectedByGravity = false
         ground.position = CGPoint(x: self.frame.width/2, y: -20)
+        ground.name = "Ground"
         addChild(ground)
         if let groundParticles = SKEmitterNode(fileNamed: "CanyonFire") {
             groundParticles.position = ground.position
@@ -76,6 +77,7 @@ extension GameScene {
         ceiling.physicsBody?.affectedByGravity = false
         ceiling.position = CGPoint(x: self.frame.width/2, y: self.frame.height)
         addChild(ceiling)
+        ceiling.name = "ceiling"
         if let groundParticles = SKEmitterNode(fileNamed: "CanyonFire") {
             groundParticles.position = ceiling.position
             addChild(groundParticles)
@@ -97,20 +99,37 @@ extension GameScene {
     
     func removeTitle() {
         let fade = SKAction.fadeOut(withDuration: 3)
-      //  let scaleSeed = SKAction.scaleX(to: 0.5, y: 0.5, duration: 1)
-        let moveSeed =  SKAction.move(to: CGPoint(x: self.frame.midX, y: self.frame.midY), duration: 1)
-        //seed.physicsBody?.applyTorque(CGFloat(-0.1))
-        //seed.run(scaleSeed)
-       // seed.physicsBody?.applyTorque(CGFloat(-0.006))
-        seed.run(moveSeed)
         title.run(fade)
+    }
+    
+   func addFireFly() {
+    if Int.random(in: 1..<60) == 1 {
+        print("Firefly!")
+        let firefly = SKSpriteNode(imageNamed: "firefly")
+        firefly.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+        firefly.physicsBody?.categoryBitMask = CollisionBitMask.fireflyCategory
+        firefly.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
+        firefly.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
+        firefly.physicsBody?.isDynamic = false
+        firefly.physicsBody?.affectedByGravity = false
+        let fireflyheight = CGFloat.random(in: -50.00...50.00)
+        firefly.position = CGPoint(x: self.frame.midX +  (self.frame.width/2), y: self.frame.midY + fireflyheight )
+          firefly.name = "firefly"
+        self.addChild(firefly)
+        firefly.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
+        firefly.setScale(0.1)
+        let time = Float.random(in: (0.5...1))
+        let spin = [Double.pi, -Double.pi].randomElement()!
+        let rotate = SKAction.rotate(byAngle: CGFloat(spin), duration: TimeInterval(time))
+        firefly.run(SKAction.repeatForever(rotate))
+    }
     }
     
     
     
     func addRock() {
        let  element = Int.random(in: 1..<50)
-        if element <= 6 && nodeCount < 9 && isDead == false {
+        if element <= 6 && nodeCount < difficulty && isDead == false {
           let rock = SKSpriteNode(imageNamed: "rock_\(element)")
               rock.physicsBody = SKPhysicsBody(texture: rock.texture!, size: rock.texture!.size())
               rock.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
@@ -122,7 +141,7 @@ extension GameScene {
             let height = CGFloat.random(in: -150.00...150.00)
             rock.position = CGPoint(x: CGFloat(1.5) * self.frame.width, y: self.frame.midY + height )
                   rock.name = "rock"
-            let randomScale = CGFloat.random(in: (0.2 + distance)...(0.5 + distance))
+            let randomScale = CGFloat.random(in: (0.2 + distance/100)...(0.5))
                 rock.setScale(randomScale)
                 self.addChild(rock)
             let time = Float.random(in: (0.5...1))
@@ -134,36 +153,6 @@ extension GameScene {
     }
     }
     
-//    func energyField() {
-//        let energy = SKSpriteNode()
-//        energy.size = CGSize(width: 10, height: self.frame.height)
-//        seed.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: self.frame.height))
-//        energy.physicsBody?.categoryBitMask = CollisionBitMask.energyCategory
-//        energy.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
-//        energy.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
-//        energy.physicsBody?.isDynamic = false
-//        energy.physicsBody?.affectedByGravity = false
-//        energy.position = CGPoint(x: 0, y: self.frame.height / 2)
-////        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
-////            fireParticles.position = energy.position
-////            addChild(fireParticles)
-////        }
-//
-//           // nodeCount += 1
-//    }
-    
-//    func decelerate() {
-////        if acceleration >= 1 {
-////            acceleration -= 0.1
-////        }
-//    }
-    
-//    func accelerate() {
-////        if acceleration <= 10 {
-////            acceleration += 0.1
-////        }
-//    }
-//
     
     func gameOver() {
         print("Game Over")
@@ -189,6 +178,13 @@ extension GameScene {
         acceleration = CGFloat(1)
         distance = CGFloat(0.0)
         createScene()
+    }
+    
+    func disperseFireFlies() {
+        if let fireflyDisperse = SKEmitterNode(fileNamed: "firefly2") {
+          fireflyDisperse.position = seed.position
+          addChild(fireflyDisperse)
+        }
     }
 
     

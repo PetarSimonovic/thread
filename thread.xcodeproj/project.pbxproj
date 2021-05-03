@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D07383426401C880050ADF9 /* firefly2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D07383326401C880050ADF9 /* firefly2.sks */; };
 		0D62B39D2639A01800EDF524 /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D62B39B2639A01800EDF524 /* FireParticles.sks */; };
 		0D62B39E2639A01800EDF524 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D62B39C2639A01800EDF524 /* Assets.xcassets */; };
 		0D90701A2631B97500855895 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9070192631B97500855895 /* AppDelegate.swift */; };
@@ -19,9 +20,9 @@
 		0D9070322631B97600855895 /* threadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9070312631B97600855895 /* threadTests.swift */; };
 		0D90703D2631B97600855895 /* threadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D90703C2631B97600855895 /* threadUITests.swift */; };
 		0D90704E263321AA00855895 /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D90704D263321AA00855895 /* GameElements.swift */; };
-		0DD73F2E263FFAEE00A22EC9 /* MyTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F2D263FFAEE00A22EC9 /* MyTileSet.sks */; };
 		0DD73F30263FFCDD00A22EC9 /* CanyonFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */; };
 		0DD73F322640009F00A22EC9 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F312640009F00A22EC9 /* Explosion.sks */; };
+		0DD73F342640068500A22EC9 /* firefly.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F332640068500A22EC9 /* firefly.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D07383326401C880050ADF9 /* firefly2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = firefly2.sks; sourceTree = "<group>"; };
 		0D62B39B2639A01800EDF524 /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticles.sks; sourceTree = "<group>"; };
 		0D62B39C2639A01800EDF524 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D9070162631B97500855895 /* thread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thread.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,9 +62,9 @@
 		0D90703C2631B97600855895 /* threadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = threadUITests.swift; sourceTree = "<group>"; };
 		0D90703E2631B97600855895 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D90704D263321AA00855895 /* GameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
-		0DD73F2D263FFAEE00A22EC9 /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
 		0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CanyonFire.sks; sourceTree = "<group>"; };
 		0DD73F312640009F00A22EC9 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		0DD73F332640068500A22EC9 /* firefly.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = firefly.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +95,6 @@
 		0D90700D2631B97500855895 = {
 			isa = PBXGroup;
 			children = (
-				0DD73F2D263FFAEE00A22EC9 /* MyTileSet.sks */,
 				0D62B39B2639A01800EDF524 /* FireParticles.sks */,
 				0D62B39C2639A01800EDF524 /* Assets.xcassets */,
 				0D9070182631B97500855895 /* thread */,
@@ -120,6 +121,8 @@
 				0D90701B2631B97500855895 /* GameScene.sks */,
 				0D90701D2631B97500855895 /* Actions.sks */,
 				0D90701F2631B97500855895 /* GameScene.swift */,
+				0DD73F332640068500A22EC9 /* firefly.sks */,
+				0D07383326401C880050ADF9 /* firefly2.sks */,
 				0D9070212631B97500855895 /* GameViewController.swift */,
 				0D90704D263321AA00855895 /* GameElements.swift */,
 				0DD73F312640009F00A22EC9 /* Explosion.sks */,
@@ -255,12 +258,13 @@
 				0D9070252631B97500855895 /* Main.storyboard in Resources */,
 				0D90701C2631B97500855895 /* GameScene.sks in Resources */,
 				0D62B39D2639A01800EDF524 /* FireParticles.sks in Resources */,
-				0DD73F2E263FFAEE00A22EC9 /* MyTileSet.sks in Resources */,
 				0D9070272631B97600855895 /* Assets.xcassets in Resources */,
 				0D62B39E2639A01800EDF524 /* Assets.xcassets in Resources */,
 				0D90701E2631B97500855895 /* Actions.sks in Resources */,
 				0DD73F30263FFCDD00A22EC9 /* CanyonFire.sks in Resources */,
 				0DD73F322640009F00A22EC9 /* Explosion.sks in Resources */,
+				0DD73F342640068500A22EC9 /* firefly.sks in Resources */,
+				0D07383426401C880050ADF9 /* firefly2.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
