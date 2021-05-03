@@ -33,6 +33,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var isRight : Bool = false
     var isLeft : Bool = false
     var distance = CGFloat(0.0)
+    var flight = false
 
     
 
@@ -54,63 +55,68 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        flight = true
         if isGameStarted == false {
             removeTitle()
             setGravity()
             let makeRock = SKAction.sequence([SKAction.run(createCanyon), SKAction.wait(forDuration: 0.1)])
           self.run(SKAction.repeatForever(makeRock))
+            let seedTorque = SKAction.applyTorque(CGFloat(0.04), duration: 0.1)
+            seed.run(SKAction.repeatForever(seedTorque))
             isGameStarted = true
             seed.physicsBody?.affectedByGravity = true
+        }
            // seed.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
          //   seed.physicsBody?.applyImpulse(CGVector(dx:0, dy: 0))
-        } else {
-            if isDead == false {
-                seed.physicsBody?.velocity = CGVector(dx: -0, dy: 0)
+//        } else {
+//            if isDead == false {
+//                        //OLD CODE
+//                seed.physicsBody?.velocity = CGVector(dx: -0, dy: 0)
 
-                for touch in (touches) {
-                    let location = touch.location(in: self)
-                    if (location.x < self.size.width / 2) {
-                            isLeft = true
-                        seed.physicsBody?.velocity = CGVector(dx: -0.1, dy: 0.1)
-
-                        seed.physicsBody?.applyImpulse(CGVector(dx: -0.01, dy: 0.2))
-                        seed.physicsBody?.applyTorque(CGFloat(0.003))
-                       // seed.physicsBody?.applyForce(CGVector(dx: -1, dy: 1.5))
-                        }
-
-                    if (location.x > self.size.width/2){
-                            isRight = true
-                        seed.physicsBody?.velocity = CGVector(dx: 0.3, dy: 0.3)
-                        seed.physicsBody?.applyImpulse(CGVector(dx: 0.01, dy: 0.2))
-                        seed.physicsBody?.applyTorque(CGFloat(-0.003))
-//seed.physicsBody?.applyForce(CGVector(dx: 1, dy: 1.5))
-                        }
-                    }
-
-             //   accelerate()
-            // seed.run(SKAction.repeatForever(seedTorque))
-//                let value = seed.physicsBody!.velocity.dy * 200
-//                let rotate = SKAction.rotate(byAngle: value, duration: 0.1)
+//                for touch in (touches) {
+//                    print(touch)
+//                    }
+//                    let location = touch.location(in: self)
+//                    if (location.x < self.size.width / 2) {
+//                            isLeft = true
+//                        seed.physicsBody?.velocity = CGVector(dx: -0.1, dy: 0.1)
 //
-//                    seed.run(rotate)
-          //  let rotate = SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 0.3)
-           // seed.run(rotate)
-            }
-        }
+//                        seed.physicsBody?.applyImpulse(CGVector(dx: -0, dy: 0.2))
+//                        seed.physicsBody?.applyTorque(CGFloat(0.003))
+//                        seed.physicsBody?.applyForce(CGVector(dx: -1, dy: 1.5))
+//                        }
+//
+//                    if (location.x > self.size.width/2){
+//                            isRight = true
+//                        seed.physicsBody?.velocity = CGVector(dx: 0.3, dy: 0.3)
+//                        seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.2))
+//                        seed.physicsBody?.applyTorque(CGFloat(-0.003))
+//                        seed.physicsBody?.applyForce(CGVector(dx: 1, dy: 1.5))
+//                        }
+//                    }
+
+//            }
+//        }
         
 
     }
     
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        flight = false        
+    }
 ////
     override func update (_ currentTime: TimeInterval) {
         
         if isGameStarted == true {
-            acceleration = ((seed.physicsBody?.velocity.dx )!*1)/4
 //            print(acceleration)
 //            print(seed.position)
-
+            if flight == true {
+              seed.physicsBody?.velocity = CGVector(dx: -0.0, dy: 0.1)
+               seed.physicsBody?.applyImpulse(CGVector(dx: -0, dy: 0.2))
+                seed.physicsBody?.applyTorque(CGFloat(0.003))
+                seed.physicsBody?.applyForce(CGVector(dx: 0, dy: 3))
+                }
+  
 
 
                 enumerateChildNodes(withName: "rock", using: ({
