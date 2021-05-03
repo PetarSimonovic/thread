@@ -20,6 +20,7 @@
 		0D90703D2631B97600855895 /* threadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D90703C2631B97600855895 /* threadUITests.swift */; };
 		0D90704E263321AA00855895 /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D90704D263321AA00855895 /* GameElements.swift */; };
 		0DD73F2E263FFAEE00A22EC9 /* MyTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F2D263FFAEE00A22EC9 /* MyTileSet.sks */; };
+		0DD73F30263FFCDD00A22EC9 /* CanyonFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		0D90703E2631B97600855895 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D90704D263321AA00855895 /* GameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
 		0DD73F2D263FFAEE00A22EC9 /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
+		0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CanyonFire.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				0D90701F2631B97500855895 /* GameScene.swift */,
 				0D9070212631B97500855895 /* GameViewController.swift */,
 				0D90704D263321AA00855895 /* GameElements.swift */,
+				0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */,
 				0D9070232631B97500855895 /* Main.storyboard */,
 				0D9070262631B97600855895 /* Assets.xcassets */,
 				0D9070282631B97600855895 /* Info.plist */,
@@ -253,6 +256,7 @@
 				0D9070272631B97600855895 /* Assets.xcassets in Resources */,
 				0D62B39E2639A01800EDF524 /* Assets.xcassets in Resources */,
 				0D90701E2631B97500855895 /* Actions.sks in Resources */,
+				0DD73F30263FFCDD00A22EC9 /* CanyonFire.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

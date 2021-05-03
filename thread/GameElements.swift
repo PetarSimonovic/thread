@@ -10,7 +10,7 @@ import SpriteKit
 struct CollisionBitMask {
     static let seedCategory:UInt32 = 0x1 << 0
     static let rockCategory:UInt32 = 0x1 << 1
-    static let loopCategory:UInt32 = 0x1 << 2
+    static let canyonCategory:UInt32 = 0x1 << 2
     static let energyCategory:UInt32 = 0x1 << 3
 }
 
@@ -33,8 +33,7 @@ extension GameScene {
         
         seed.physicsBody?.categoryBitMask = CollisionBitMask.seedCategory
         seed.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory
-        seed.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.loopCategory
-        
+        seed.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory
         seed.physicsBody?.affectedByGravity = false
         seed.physicsBody?.isDynamic = true
     
@@ -45,22 +44,44 @@ extension GameScene {
     
     func createCanyon() {
         createGround()
+        createCeiling()
     }
     
     func createGround() {
         let ground = SKSpriteNode()
-        ground.size = CGSize(width: self.frame.width, height: 50)
-        ground.color = SKColor (red: 119/255.0, green: 136/255.0, blue: 153/255.0, alpha: 1.0)
-
+        ground.size = CGSize(width: self.frame.width, height: 30)
         ground.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width, height: 30))
-        ground.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
+        ground.physicsBody?.categoryBitMask = CollisionBitMask.canyonCategory
         ground.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
         ground.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
         ground.physicsBody?.isDynamic = false
         ground.physicsBody?.affectedByGravity = false
-        ground.position = CGPoint(x: self.frame.width/2, y: 10)
+        ground.position = CGPoint(x: self.frame.width/2, y: -20)
         addChild(ground)
+        if let groundParticles = SKEmitterNode(fileNamed: "CanyonFire") {
+            groundParticles.position = ground.position
+            addChild(groundParticles)
+        }
     }
+    
+    func createCeiling() {
+        let ceiling = SKSpriteNode()
+        ceiling.size = CGSize(width: self.frame.width, height: 50)
+
+        ceiling.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width, height: 30))
+        ceiling.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
+        ceiling.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
+        ceiling.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
+        ceiling.physicsBody?.isDynamic = false
+        ceiling.physicsBody?.affectedByGravity = false
+        ceiling.position = CGPoint(x: self.frame.width/2, y: self.frame.height)
+        addChild(ceiling)
+        if let groundParticles = SKEmitterNode(fileNamed: "CanyonFire") {
+            groundParticles.position = ceiling.position
+            addChild(groundParticles)
+        }
+    }
+    
     
 
     func displayTitle() -> SKSpriteNode {
@@ -98,8 +119,8 @@ extension GameScene {
               rock.physicsBody?.isDynamic = false
               rock.physicsBody?.affectedByGravity = false
             rock.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
-              let height = CGFloat(arc4random() % UInt32(CGFloat(self.frame.height)))
-            rock.position = CGPoint(x: CGFloat(1.5) * self.frame.width, y: height )
+            let height = CGFloat.random(in: -50.00...50.00)
+            rock.position = CGPoint(x: CGFloat(1.5) * self.frame.width, y: self.frame.midY + height )
                   rock.name = "rock"
             let randomScale = CGFloat.random(in: (0.2 + distance)...(0.5 + distance))
                 rock.setScale(randomScale)
