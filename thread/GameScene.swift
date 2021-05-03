@@ -58,7 +58,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if isGameStarted == false {
             removeTitle()
             setGravity()
-            let makeRock = SKAction.sequence([SKAction.run(createCanyon), SKAction.wait(forDuration: 0.1)])
+            createCanyon()
+            let makeRock = SKAction.sequence([SKAction.run(addRock), SKAction.wait(forDuration: 0.1)])
           self.run(SKAction.repeatForever(makeRock))
             let seedTorque = SKAction.applyTorque(CGFloat(0.04), duration: 0.1)
             seed.run(SKAction.repeatForever(seedTorque))
@@ -120,7 +121,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if flight == true {
          //     seed.physicsBody?.velocity = CGVector(dx: -0.0, dy: 1)
             //    seed.physicsBody?.applyTorque(CGFloat(0.008))
-                seed.physicsBody?.applyForce(CGVector(dx: 0, dy: 0.4))
+                seed.physicsBody?.applyForce(CGVector(dx: 0, dy: 0.3))
                 }
             
             

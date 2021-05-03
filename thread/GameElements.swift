@@ -44,9 +44,25 @@ extension GameScene {
     }
     
     func createCanyon() {
-      addRock()
+        createGround()
     }
     
+    func createGround() {
+        let ground = SKSpriteNode()
+        ground.size = CGSize(width: self.frame.width, height: 50)
+        ground.color = SKColor (red: 119/255.0, green: 136/255.0, blue: 153/255.0, alpha: 1.0)
+
+        ground.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width, height: 30))
+        ground.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
+        ground.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
+        ground.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
+        ground.physicsBody?.isDynamic = false
+        ground.physicsBody?.affectedByGravity = false
+        ground.position = CGPoint(x: self.frame.width/2, y: 10)
+        addChild(ground)
+    }
+    
+
     func displayTitle() -> SKSpriteNode {
         
         let title = SKSpriteNode(imageNamed: "threadtitle")
@@ -64,7 +80,7 @@ extension GameScene {
         let moveSeed =  SKAction.move(to: CGPoint(x: self.frame.midX, y: self.frame.midY), duration: 1)
         //seed.physicsBody?.applyTorque(CGFloat(-0.1))
         //seed.run(scaleSeed)
-        seed.physicsBody?.applyTorque(CGFloat(-0.006))
+       // seed.physicsBody?.applyTorque(CGFloat(-0.006))
         seed.run(moveSeed)
         title.run(fade)
     }
