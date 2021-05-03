@@ -55,7 +55,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        flight = true
         if isGameStarted == false {
             removeTitle()
             setGravity()
@@ -65,6 +64,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             seed.run(SKAction.repeatForever(seedTorque))
             isGameStarted = true
             seed.physicsBody?.affectedByGravity = true
+            
+        } else if isDead == false {
+            print("Jolt!")
+            seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.35))
+            flight = true
+
+            
+
         }
            // seed.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
          //   seed.physicsBody?.applyImpulse(CGVector(dx:0, dy: 0))
@@ -102,7 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        flight = false        
+        flight = false
     }
 ////
     override func update (_ currentTime: TimeInterval) {
@@ -111,11 +118,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            print(acceleration)
 //            print(seed.position)
             if flight == true {
-              seed.physicsBody?.velocity = CGVector(dx: -0.0, dy: 0.1)
-               seed.physicsBody?.applyImpulse(CGVector(dx: -0, dy: 0.2))
-                seed.physicsBody?.applyTorque(CGFloat(0.003))
-                seed.physicsBody?.applyForce(CGVector(dx: 0, dy: 3))
+         //     seed.physicsBody?.velocity = CGVector(dx: -0.0, dy: 1)
+            //    seed.physicsBody?.applyTorque(CGFloat(0.008))
+                seed.physicsBody?.applyForce(CGVector(dx: 0, dy: 0.4))
                 }
+            
+            
   
 
 
@@ -129,6 +137,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         self.nodeCount -= 1
                       //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
                         self.distance += 0.001
+                        print("Distance")
                         print(self.distance)
                     }
                 }))

@@ -21,7 +21,7 @@ extension GameScene {
         let seed = SKSpriteNode(imageNamed: "threadship")
         seed.size = CGSize(width: 20, height: 20)
         print(self.frame.midX)
-        seed.position = CGPoint(x: self.frame.width/1.6, y:self.frame.midY)
+        seed.position = CGPoint(x: self.frame.midX, y:self.frame.midY)
 
         
         // Asign physics
@@ -50,8 +50,8 @@ extension GameScene {
     func displayTitle() -> SKSpriteNode {
         
         let title = SKSpriteNode(imageNamed: "threadtitle")
-        title.position = CGPoint(x: self.frame.midX, y:self.frame.midY)
-        title.setScale(0.4)
+        title.position = CGPoint(x: self.frame.midX, y:self.frame.midY + 50)
+        title.setScale(0.8)
         title.name = "title"
         
         return title
