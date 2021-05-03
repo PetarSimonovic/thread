@@ -69,7 +69,7 @@ extension GameScene {
         ceiling.size = CGSize(width: self.frame.width, height: 50)
 
         ceiling.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width, height: 30))
-        ceiling.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
+        ceiling.physicsBody?.categoryBitMask = CollisionBitMask.canyonCategory
         ceiling.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
         ceiling.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
         ceiling.physicsBody?.isDynamic = false
@@ -134,23 +134,23 @@ extension GameScene {
     }
     }
     
-    func energyField() {
-        let energy = SKSpriteNode()
-        energy.size = CGSize(width: 10, height: self.frame.height)
-        seed.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: self.frame.height))
-        energy.physicsBody?.categoryBitMask = CollisionBitMask.energyCategory
-        energy.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
-        energy.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
-        energy.physicsBody?.isDynamic = false
-        energy.physicsBody?.affectedByGravity = false
-        energy.position = CGPoint(x: 0, y: self.frame.height / 2)
-//        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
-//            fireParticles.position = energy.position
-//            addChild(fireParticles)
-//        }
-
-           // nodeCount += 1
-    }
+//    func energyField() {
+//        let energy = SKSpriteNode()
+//        energy.size = CGSize(width: 10, height: self.frame.height)
+//        seed.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: self.frame.height))
+//        energy.physicsBody?.categoryBitMask = CollisionBitMask.energyCategory
+//        energy.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
+//        energy.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
+//        energy.physicsBody?.isDynamic = false
+//        energy.physicsBody?.affectedByGravity = false
+//        energy.position = CGPoint(x: 0, y: self.frame.height / 2)
+////        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
+////            fireParticles.position = energy.position
+////            addChild(fireParticles)
+////        }
+//
+//           // nodeCount += 1
+//    }
     
 //    func decelerate() {
 ////        if acceleration >= 1 {

@@ -158,6 +158,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let firstBody = contact.bodyA
+        let secondBody = contact.bodyB
+                
+        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory || firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory  {
+            isDead = true
+            if let explosion = SKEmitterNode(fileNamed: "Explosion") {
+              explosion.position = seed.position
+              addChild(explosion)
+            }
+            seed.removeFromParent()
+            }
+        }
+            
 
     
     

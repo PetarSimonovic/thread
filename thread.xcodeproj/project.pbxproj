@@ -21,6 +21,7 @@
 		0D90704E263321AA00855895 /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D90704D263321AA00855895 /* GameElements.swift */; };
 		0DD73F2E263FFAEE00A22EC9 /* MyTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F2D263FFAEE00A22EC9 /* MyTileSet.sks */; };
 		0DD73F30263FFCDD00A22EC9 /* CanyonFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */; };
+		0DD73F322640009F00A22EC9 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F312640009F00A22EC9 /* Explosion.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		0D90704D263321AA00855895 /* GameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
 		0DD73F2D263FFAEE00A22EC9 /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
 		0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CanyonFire.sks; sourceTree = "<group>"; };
+		0DD73F312640009F00A22EC9 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				0D90701F2631B97500855895 /* GameScene.swift */,
 				0D9070212631B97500855895 /* GameViewController.swift */,
 				0D90704D263321AA00855895 /* GameElements.swift */,
+				0DD73F312640009F00A22EC9 /* Explosion.sks */,
 				0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */,
 				0D9070232631B97500855895 /* Main.storyboard */,
 				0D9070262631B97600855895 /* Assets.xcassets */,
@@ -257,6 +260,7 @@
 				0D62B39E2639A01800EDF524 /* Assets.xcassets in Resources */,
 				0D90701E2631B97500855895 /* Actions.sks in Resources */,
 				0DD73F30263FFCDD00A22EC9 /* CanyonFire.sks in Resources */,
+				0DD73F322640009F00A22EC9 /* Explosion.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
