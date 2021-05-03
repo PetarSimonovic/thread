@@ -119,7 +119,7 @@ extension GameScene {
               rock.physicsBody?.isDynamic = false
               rock.physicsBody?.affectedByGravity = false
             rock.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
-            let height = CGFloat.random(in: -50.00...50.00)
+            let height = CGFloat.random(in: -150.00...150.00)
             rock.position = CGPoint(x: CGFloat(1.5) * self.frame.width, y: self.frame.midY + height )
                   rock.name = "rock"
             let randomScale = CGFloat.random(in: (0.2 + distance)...(0.5 + distance))

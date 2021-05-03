@@ -68,7 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         } else if isDead == false {
             print("Jolt!")
-            seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.35))
+            seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.25))
             flight = true
 
             
