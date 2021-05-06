@@ -36,23 +36,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var flight = false
     var difficulty = 4
 
-    
-
-    
-        
-    
-  //  let fabric = SKSpriteNode(color: .gray, size: CGSize(width: 200, height: 200))
-    
     override func didMove(to view: SKView) {
-        //energyField()
-
         createScene()
-        
-      
-
-      //  seed.speed = 1
-       // seed.run(SKAction.repeatForever(rotateSeed))
-      //  decelerate()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -68,34 +53,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         flight = false
     }
-////
+    
     override func update (_ currentTime: TimeInterval) {
         
         if isGameStarted == true {
             self.distance += 0.001
             throwOrb()
-
-//            print(acceleration)
-//            print(seed.position)
+            
             if flight == true {
-         //     seed.physicsBody?.velocity = CGVector(dx: -0.0, dy: 1)
-            //    seed.physicsBody?.applyTorque(CGFloat(0.008))
                 seedFlight()
-                }
+            }
             
             moveRocks()
             moveFireFlies()
             checkDeath()
-            
-//
-    }
+        }
         
     }
-    
-    
-    
-    
-
 
 }
 
