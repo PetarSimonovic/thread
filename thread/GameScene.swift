@@ -57,58 +57,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         if isGameStarted == false {
-            removeTitle()
-            setGravity()
-            createCanyon()
-            let makeRock = SKAction.sequence([SKAction.run(addRock), SKAction.wait(forDuration: 0.1)])
-          self.run(SKAction.repeatForever(makeRock))
-            let makeFireFly = SKAction.sequence([SKAction.run(addFireFly), SKAction.wait(forDuration: 0.1)])
-          self.run(SKAction.repeatForever(makeFireFly))
-            isGameStarted = true
-            seed.physicsBody?.affectedByGravity = true
-            
-        } else if isDead == false {
-            print("Jolt!")
-            seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.25))
-            seed.physicsBody?.applyTorque(CGFloat(0.003))
-            flight = true
-
-            
-
+            startGame()
         }
-           // seed.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-         //   seed.physicsBody?.applyImpulse(CGVector(dx:0, dy: 0))
-//        } else {
-//            if isDead == false {
-//                        //OLD CODE
-//                seed.physicsBody?.velocity = CGVector(dx: -0, dy: 0)
-
-//                for touch in (touches) {
-//                    print(touch)
-//                    }
-//                    let location = touch.location(in: self)
-//                    if (location.x < self.size.width / 2) {
-//                            isLeft = true
-//                        seed.physicsBody?.velocity = CGVector(dx: -0.1, dy: 0.1)
-//
-//                        seed.physicsBody?.applyImpulse(CGVector(dx: -0, dy: 0.2))
-//                        seed.physicsBody?.applyTorque(CGFloat(0.003))
-//                        seed.physicsBody?.applyForce(CGVector(dx: -1, dy: 1.5))
-//                        }
-//
-//                    if (location.x > self.size.width/2){
-//                            isRight = true
-//                        seed.physicsBody?.velocity = CGVector(dx: 0.3, dy: 0.3)
-//                        seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.2))
-//                        seed.physicsBody?.applyTorque(CGFloat(-0.003))
-//                        seed.physicsBody?.applyForce(CGVector(dx: 1, dy: 1.5))
-//                        }
-//                    }
-
-//            }
-//        }
-        
-
+        if isDead == false {
+            seedThrust()
+            flight = true
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -124,7 +78,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if flight == true {
          //     seed.physicsBody?.velocity = CGVector(dx: -0.0, dy: 1)
             //    seed.physicsBody?.applyTorque(CGFloat(0.008))
-                seed.physicsBody?.applyForce(CGVector(dx: 0, dy: 0.5))
+                seedFlight()
+                self.throwBolo()
                 }
             
             
@@ -198,6 +153,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
               disperseFireFlies()
             if secondBody.node?.position != nil {
               secondBody.node?.removeFromParent()
+                createBolo()
+
             }
             
         }
@@ -205,7 +162,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
               disperseFireFlies()
 //            if secondBody.node?.position != nil {
 //              secondBody.node?.removeFromParent()
-            createBolo()
 //            }
             
         }
@@ -215,23 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     
-    func createScene() {
-//        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-//        self.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
-//        self.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory
-//        self.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory
-//        self.physicsBody?.isDynamic = false
-//        self.physicsBody?.affectedByGravity = false
-//
-        self.physicsWorld.contactDelegate = self
-        self.backgroundColor = SKColor (red: 80.0/255.0, green: 192.0/255.0, blue: 203.0/255.0, alpha: 1.0)
-        self.seed = createSeed()
-        self.title = displayTitle()
-        self.addChild(seed)
-        createBolo()
 
-        self.addChild(title)
-   }
 
 }
 
