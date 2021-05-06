@@ -85,17 +85,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             moveRocks()
             moveFireFlies()
+            checkDeath()
 
-            
-            if seed.position.x <= -seed.size.width || seed.position.y < 0 {
-                isDead = true
-                seed.removeFromParent()
-            }
-            
-            if isDead == true && nodeCount == 0 {
-               gameOver()
-               restartGame()
-            }
+         
                 
             
 //

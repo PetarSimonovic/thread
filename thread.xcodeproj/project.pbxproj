@@ -195,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				0DB6F26426441E1700CC8D79 /* Title.swift */,
-				0DB6F26626441E3B00CC8D79 /* GameOver.swift */,
 			);
 			path = Titles_Menus;
 			sourceTree = "<group>";
@@ -206,6 +205,7 @@
 				0D9070212631B97500855895 /* GameViewController.swift */,
 				0D90701F2631B97500855895 /* GameScene.swift */,
 				0DB6F26926441EC700CC8D79 /* StartScene.swift */,
+				0DB6F26626441E3B00CC8D79 /* GameOver.swift */,
 			);
 			name = GameControllers;
 			sourceTree = "<group>";
