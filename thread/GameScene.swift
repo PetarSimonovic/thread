@@ -86,54 +86,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             moveRocks()
             moveFireFlies()
             checkDeath()
-
-         
-                
             
 //
     }
         
     }
     
-    
-    func didBegin(_ contact: SKPhysicsContact) {
-        let firstBody = contact.bodyA
-        let secondBody = contact.bodyB
-        
-        print(firstBody)
-        print(secondBody)
- 
-                
-        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory || firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory  {
-            isDead = true
-            if let explosion = SKEmitterNode(fileNamed: "Explosion") {
-              explosion.position = seed.position
-              addChild(explosion)
-            }
-            seed.removeFromParent()
-            }
-        
-            
-
-        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.fireflyCategory  {
-              disperseFireFlies()
-            if secondBody.node?.position != nil {
-              secondBody.node?.removeFromParent()
-                createOrb()
-
-            }
-            
-        }
-        if firstBody.categoryBitMask == CollisionBitMask.fireflyCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory  {
-              disperseFireFlies()
-//            if secondBody.node?.position != nil {
-//              secondBody.node?.removeFromParent()
-//            }
-            
-        }
-        }
-            
-
     
     
     

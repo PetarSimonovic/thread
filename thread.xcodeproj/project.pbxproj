@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0D07383426401C880050ADF9 /* firefly2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D07383326401C880050ADF9 /* firefly2.sks */; };
-		0D62B39D2639A01800EDF524 /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D62B39B2639A01800EDF524 /* FireParticles.sks */; };
-		0D62B39E2639A01800EDF524 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D62B39C2639A01800EDF524 /* Assets.xcassets */; };
 		0D90701A2631B97500855895 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9070192631B97500855895 /* AppDelegate.swift */; };
 		0D90701C2631B97500855895 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D90701B2631B97500855895 /* GameScene.sks */; };
 		0D90701E2631B97500855895 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D90701D2631B97500855895 /* Actions.sks */; };
@@ -53,8 +51,6 @@
 
 /* Begin PBXFileReference section */
 		0D07383326401C880050ADF9 /* firefly2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = firefly2.sks; sourceTree = "<group>"; };
-		0D62B39B2639A01800EDF524 /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticles.sks; sourceTree = "<group>"; };
-		0D62B39C2639A01800EDF524 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D9070162631B97500855895 /* thread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D9070192631B97500855895 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D90701B2631B97500855895 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -113,8 +109,6 @@
 		0D90700D2631B97500855895 = {
 			isa = PBXGroup;
 			children = (
-				0D62B39B2639A01800EDF524 /* FireParticles.sks */,
-				0D62B39C2639A01800EDF524 /* Assets.xcassets */,
 				0D9070182631B97500855895 /* thread */,
 				0D9070302631B97600855895 /* threadTests */,
 				0D90703B2631B97600855895 /* threadUITests */,
@@ -135,15 +129,13 @@
 		0D9070182631B97500855895 /* thread */ = {
 			isa = PBXGroup;
 			children = (
+				0DB6F2702644303700CC8D79 /* Storyboards */,
 				0DB6F26D26441FFF00CC8D79 /* Physics */,
 				0DB6F26826441E9F00CC8D79 /* GameControllers */,
 				0DB6F26326441DFC00CC8D79 /* Titles_Menus */,
 				0DB6F25D26441B8500CC8D79 /* Sprites */,
 				0DB6F25C26441B5400CC8D79 /* Particles */,
 				0D9070192631B97500855895 /* AppDelegate.swift */,
-				0D90701B2631B97500855895 /* GameScene.sks */,
-				0D90701D2631B97500855895 /* Actions.sks */,
-				0D9070232631B97500855895 /* Main.storyboard */,
 				0D9070262631B97600855895 /* Assets.xcassets */,
 				0D9070282631B97600855895 /* Info.plist */,
 			);
@@ -217,6 +209,16 @@
 				0D90704D263321AA00855895 /* Collision.swift */,
 			);
 			path = Physics;
+			sourceTree = "<group>";
+		};
+		0DB6F2702644303700CC8D79 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0D90701B2631B97500855895 /* GameScene.sks */,
+				0D90701D2631B97500855895 /* Actions.sks */,
+				0D9070232631B97500855895 /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,9 +326,7 @@
 			files = (
 				0D9070252631B97500855895 /* Main.storyboard in Resources */,
 				0D90701C2631B97500855895 /* GameScene.sks in Resources */,
-				0D62B39D2639A01800EDF524 /* FireParticles.sks in Resources */,
 				0D9070272631B97600855895 /* Assets.xcassets in Resources */,
-				0D62B39E2639A01800EDF524 /* Assets.xcassets in Resources */,
 				0D90701E2631B97500855895 /* Actions.sks in Resources */,
 				0DD73F30263FFCDD00A22EC9 /* CanyonFire.sks in Resources */,
 				0DD73F322640009F00A22EC9 /* Explosion.sks in Resources */,
