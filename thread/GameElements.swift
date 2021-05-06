@@ -12,6 +12,8 @@ struct CollisionBitMask {
     static let rockCategory:UInt32 = 0x1 << 1
     static let canyonCategory:UInt32 = 0x1 << 2
     static let fireflyCategory:UInt32 = 0x1 << 3
+    static let boloCategory:UInt32 = 0x1 << 4
+
 }
 
 extension GameScene {
@@ -35,8 +37,7 @@ extension GameScene {
         seed.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
         seed.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory | CollisionBitMask.fireflyCategory
         seed.physicsBody?.affectedByGravity = false
-        seed.physicsBody?.isDynamic = true
-    
+        seed.physicsBody?.isDynamic = true    
         return seed
     
         
@@ -85,6 +86,7 @@ extension GameScene {
     }
     
     
+    
 
     func displayTitle() -> SKSpriteNode {
         
@@ -101,6 +103,29 @@ extension GameScene {
         let fade = SKAction.fadeOut(withDuration: 3)
         title.run(fade)
     }
+    
+    func createBolo() {
+        print("Bolo addad")
+        let bolo = SKSpriteNode(imageNamed: "bolo")
+        bolo.physicsBody = SKPhysicsBody(texture: bolo.texture!, size: bolo.size)
+        bolo.size = CGSize(width: 15, height: 15)
+        bolo.physicsBody?.linearDamping = 0.55 // simulates air friction (value between 0 and 1)
+        bolo.physicsBody?.restitution = 0.0 // how much energy object loses when it hits another (value between 0 and 1)
+        
+        // Add collision masks
+                bolo.physicsBody?.categoryBitMask = CollisionBitMask.boloCategory
+        bolo.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
+        bolo.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory | CollisionBitMask.fireflyCategory
+        bolo.physicsBody?.affectedByGravity = false
+        bolo.physicsBody?.isDynamic = false
+       // bolo.setScale(0.5)
+        
+        seed.addChild(bolo)
+       // seed.addChild(bolo)
+        bolo.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+       bolo.position = CGPoint(x: 20, y: 0 )
+    }
+
     
    func addFireFly() {
     if Int.random(in: 1..<60) == 1 {

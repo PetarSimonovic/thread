@@ -64,14 +64,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           self.run(SKAction.repeatForever(makeRock))
             let makeFireFly = SKAction.sequence([SKAction.run(addFireFly), SKAction.wait(forDuration: 0.1)])
           self.run(SKAction.repeatForever(makeFireFly))
-            let seedTorque = SKAction.applyTorque(CGFloat(0.04), duration: 0.1)
-            seed.run(SKAction.repeatForever(seedTorque))
             isGameStarted = true
             seed.physicsBody?.affectedByGravity = true
             
         } else if isDead == false {
             print("Jolt!")
             seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.25))
+            seed.physicsBody?.applyTorque(CGFloat(0.003))
             flight = true
 
             
@@ -206,6 +205,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
               disperseFireFlies()
 //            if secondBody.node?.position != nil {
 //              secondBody.node?.removeFromParent()
+            createBolo()
 //            }
             
         }
@@ -228,6 +228,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.seed = createSeed()
         self.title = displayTitle()
         self.addChild(seed)
+        createBolo()
+
         self.addChild(title)
    }
 
