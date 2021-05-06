@@ -34,6 +34,22 @@ extension GameScene {
     }
     }
     
+    func moveFireFlies() {
+    
+    enumerateChildNodes(withName: "firefly", using: ({
+        (node, error) in
+        let firefly = node as! SKSpriteNode
+        firefly.position = CGPoint(x: firefly.position.x - 0.5, y: firefly.position.y)
+      //  print("Firefly position: \(firefly.position)")
+
+        if firefly.position.x <= -self.frame.width * 2 {
+            firefly.removeFromParent()
+            print("Firefly removed")
+        }
+    }))
+        
+    }
+    
     func disperseFireFlies() {
         if let fireflyDisperse = SKEmitterNode(fileNamed: "firefly2") {
           fireflyDisperse.position = seed.position

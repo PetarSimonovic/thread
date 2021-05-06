@@ -32,7 +32,7 @@ extension GameScene {
         removeTitle()
         setGravity()
         createCanyon()
-        createBolo()
+        createOrb()
         startRocks()
         seed.physicsBody?.affectedByGravity = true
         

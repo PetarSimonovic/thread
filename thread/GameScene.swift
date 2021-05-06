@@ -73,45 +73,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if isGameStarted == true {
             self.distance += 0.001
+            throwOrb()
+
 //            print(acceleration)
 //            print(seed.position)
             if flight == true {
          //     seed.physicsBody?.velocity = CGVector(dx: -0.0, dy: 1)
             //    seed.physicsBody?.applyTorque(CGFloat(0.008))
                 seedFlight()
-                self.throwBolo()
                 }
             
-            
-  
+            moveRocks()
+            moveFireFlies()
 
-
-                enumerateChildNodes(withName: "rock", using: ({
-                    (node, error) in
-                    let rock = node as! SKSpriteNode
-                    rock.position = CGPoint(x: rock.position.x - 1.5, y: rock.position.y)
-                    if rock.position.x <= -rock.size.width {
-                        //print(bg.position.x)
-                        rock.removeFromParent()
-                        self.nodeCount -= 1
-                      //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
-                        print("Distance")
-                  //      print(self.distance)
-                    //    print("rock position \(rock.position)")
-                    }
-                }))
-            
-            enumerateChildNodes(withName: "firefly", using: ({
-                (node, error) in
-                let firefly = node as! SKSpriteNode
-                firefly.position = CGPoint(x: firefly.position.x - 0.5, y: firefly.position.y)
-              //  print("Firefly position: \(firefly.position)")
-        
-                if firefly.position.x <= -self.frame.width * 2 {
-                    firefly.removeFromParent()
-                    print("Firefly removed")
-                }
-            }))
             
             if seed.position.x <= -seed.size.width || seed.position.y < 0 {
                 isDead = true
@@ -153,7 +127,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
               disperseFireFlies()
             if secondBody.node?.position != nil {
               secondBody.node?.removeFromParent()
-                createBolo()
+                createOrb()
 
             }
             

@@ -35,5 +35,24 @@ extension GameScene {
                nodeCount += 1
     }
     }
+    
+    func moveRocks() {
+    
+    enumerateChildNodes(withName: "rock", using: ({
+        (node, error) in
+        let rock = node as! SKSpriteNode
+        rock.position = CGPoint(x: rock.position.x - 1.5, y: rock.position.y)
+        if rock.position.x <= -rock.size.width {
+            //print(bg.position.x)
+            rock.removeFromParent()
+            self.nodeCount -= 1
+          //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
+            print("Distance")
+      //      print(self.distance)
+        //    print("rock position \(rock.position)")
+        }
+    }))
+        
+    }
 
 }
