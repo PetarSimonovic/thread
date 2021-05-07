@@ -14,7 +14,7 @@ extension GameScene {
         print("Bolo addad")
         let orb = SKSpriteNode(imageNamed: "bolo")
         orb.size = CGSize(width: 10, height: 10)
-        orb.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+        orb.physicsBody = SKPhysicsBody(circleOfRadius: 5)
       //  orb.physicsBody?.linearDamping = 0.0 // simulates air friction (value between 0 and 1)
        // orb.physicsBody?.restitution = 0.0 // how much energy object loses when it hits another (value between 0 and 1)
         
@@ -23,13 +23,22 @@ extension GameScene {
         orb.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
         orb.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory | CollisionBitMask.fireflyCategory
         orb.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        orb.position = CGPoint(x: seed.position.x + 20, y: seed.position.y + 20 )
-        orb.physicsBody?.affectedByGravity = true
         orb.physicsBody?.isDynamic = true
+        orb.physicsBody?.affectedByGravity = false
+        orb.physicsBody?.mass = CGFloat(-10.0)
+        let orbOrbit = SKNode()
+        orbOrbit.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+
         orb.name = "orb"
+       orb.position = CGPoint(x: orbOrbit.position.x/9, y: orbOrbit.position.y/9)
+        self.addChild(orbOrbit)
        // bolo.setScale(0.5)
-        
-        addChild(orb)
+        orbOrbit.addChild(orb)
+        let rotate = SKAction.rotate(byAngle: CGFloat(0.5), duration: TimeInterval(0.1))
+        orbOrbit.run(SKAction.repeatForever(rotate))
+        print(orb)
+        print(orbOrbit)
+        print(seed)
        // seed.addChild(bolo)
       
     }

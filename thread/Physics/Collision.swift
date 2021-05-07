@@ -12,7 +12,7 @@ struct CollisionBitMask {
     static let rockCategory:UInt32 = 0x1 << 1
     static let canyonCategory:UInt32 = 0x1 << 2
     static let fireflyCategory:UInt32 = 0x1 << 3
-    static let orbCategory:UInt32 = 0x1 << 4
+    static let orbCategory:UInt32 = 0x0 << 4
 
 }
 

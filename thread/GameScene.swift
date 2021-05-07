@@ -40,7 +40,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     override func didMove(to view: SKView) {
         createScene()
-        addOrb()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -61,7 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if isGameStarted == true {
             self.distance += 0.001
-            throwOrb()
+          //  throwOrb()
             
             if flight == true {
                 seedFlight()

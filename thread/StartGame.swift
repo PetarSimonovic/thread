@@ -25,6 +25,8 @@ extension GameScene {
 
         self.title = displayTitle()
         self.addChild(title)
+        addOrb()
+
    }
     
     func startGame () {
