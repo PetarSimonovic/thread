@@ -25,7 +25,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var restartBtn = SKSpriteNode()
     var pauseBtn = SKSpriteNode()
     var logoImg = SKSpriteNode()
-    var wallPair = SKNode()
     var moveAndRemove = SKAction()
     var rockNode = 0
     var seed = SKSpriteNode()
@@ -37,6 +36,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var distance = CGFloat(0.0)
     var flight = false
     var difficulty = 4
+    var thrownOrb: Bool = false
+    var touch = UITouch()
 
     override func didMove(to view: SKView) {
         createScene()
@@ -47,8 +48,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             startGame()
         }
         if isDead == false {
-            seedThrust()
-            flight = true
+            for touch in touches {
+                if touch.tapCount == 2 {
+                    print("DoubleTap")
+                    throwOrb()
+                }
+                else if touch.tapCount == 1 {
+                    print("Single Tap")
+                    seedThrust()
+                    flight = true
+                }
+            }
+            
+            
+          
         }
     }
     
@@ -66,6 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 seedFlight()
             }
             
+            moveOrb()
             moveRocks()
             moveFireFlies()
             checkDeath()

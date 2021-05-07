@@ -25,7 +25,6 @@ extension GameScene {
 
         self.title = displayTitle()
         self.addChild(title)
-        addOrb()
 
    }
     
@@ -37,6 +36,7 @@ extension GameScene {
         startRocks()
         startFireFlies()
         seed.physicsBody?.affectedByGravity = true
+        addOrb()
 
         
         isGameStarted = true
@@ -59,8 +59,8 @@ extension GameScene {
     
     func startOrbs() {
         
-    let makeOrb = SKAction.sequence([SKAction.run(addOrb), SKAction.wait(forDuration: 0.1)])
-    self.run(SKAction.repeatForever(makeOrb))
+//    let makeOrb = SKAction.sequence([SKAction.run(addOrb), SKAction.wait(forDuration: 0.1)])
+//    self.run(SKAction.repeatForever(makeOrb))
         
     }
     
@@ -77,6 +77,7 @@ extension GameScene {
         acceleration = CGFloat(1)
         distance = CGFloat(0.0)
         createScene()
+        thrownOrb = false
         
     }
     

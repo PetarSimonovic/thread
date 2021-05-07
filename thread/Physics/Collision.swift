@@ -40,7 +40,7 @@ extension GameScene {
 
         if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.fireflyCategory  {
               disperseFireFlies()
-              addOrb()
+            //  addOrb()
             if secondBody.node?.position != nil {
               secondBody.node?.removeFromParent()
                 //createOrb()

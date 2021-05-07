@@ -54,6 +54,8 @@ extension GameScene {
         if let fireflyDisperse = SKEmitterNode(fileNamed: "firefly2") {
           fireflyDisperse.position = seed.position
           addChild(fireflyDisperse)
+          addOrb()
+        
         }
     }
     
