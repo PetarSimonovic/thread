@@ -10,6 +10,9 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var title = SKSpriteNode()
+
+    
     var isGameStarted: Bool = false
     var isDead: Bool = false
     
@@ -26,7 +29,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveAndRemove = SKAction()
     var rockNode = 0
     var seed = SKSpriteNode()
-    var title = SKSpriteNode()
     var repeatActionSeed = SKAction()
     var acceleration = CGFloat(1)
     var nodeCount = 0
@@ -38,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     override func didMove(to view: SKView) {
         createScene()
+        addOrb()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){

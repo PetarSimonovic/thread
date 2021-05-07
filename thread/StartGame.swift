@@ -32,9 +32,10 @@ extension GameScene {
         removeTitle()
         setGravity()
         createCanyon()
-        createOrb()
         startRocks()
+        startFireFlies()
         seed.physicsBody?.affectedByGravity = true
+
         
         isGameStarted = true
 
@@ -51,6 +52,13 @@ extension GameScene {
         
     let makeFireFly = SKAction.sequence([SKAction.run(addFireFly), SKAction.wait(forDuration: 0.1)])
     self.run(SKAction.repeatForever(makeFireFly))
+        
+    }
+    
+    func startOrbs() {
+        
+    let makeOrb = SKAction.sequence([SKAction.run(addOrb), SKAction.wait(forDuration: 0.1)])
+    self.run(SKAction.repeatForever(makeOrb))
         
     }
     

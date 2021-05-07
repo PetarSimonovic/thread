@@ -25,7 +25,7 @@
 		0DB6F26126441C0400CC8D79 /* Canyon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB6F26026441C0400CC8D79 /* Canyon.swift */; };
 		0DB6F26526441E1700CC8D79 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB6F26426441E1700CC8D79 /* Title.swift */; };
 		0DB6F26726441E3B00CC8D79 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB6F26626441E3B00CC8D79 /* GameOver.swift */; };
-		0DB6F26A26441EC700CC8D79 /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB6F26926441EC700CC8D79 /* StartScene.swift */; };
+		0DB6F26A26441EC700CC8D79 /* StartGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB6F26926441EC700CC8D79 /* StartGame.swift */; };
 		0DB6F26F2644200F00CC8D79 /* Gravity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB6F26E2644200F00CC8D79 /* Gravity.swift */; };
 		0DD73F30263FFCDD00A22EC9 /* CanyonFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */; };
 		0DD73F322640009F00A22EC9 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F312640009F00A22EC9 /* Explosion.sks */; };
@@ -74,7 +74,7 @@
 		0DB6F26026441C0400CC8D79 /* Canyon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canyon.swift; sourceTree = "<group>"; };
 		0DB6F26426441E1700CC8D79 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		0DB6F26626441E3B00CC8D79 /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
-		0DB6F26926441EC700CC8D79 /* StartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScene.swift; sourceTree = "<group>"; };
+		0DB6F26926441EC700CC8D79 /* StartGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGame.swift; sourceTree = "<group>"; };
 		0DB6F26E2644200F00CC8D79 /* Gravity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gravity.swift; sourceTree = "<group>"; };
 		0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CanyonFire.sks; sourceTree = "<group>"; };
 		0DD73F312640009F00A22EC9 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 			children = (
 				0D9070212631B97500855895 /* GameViewController.swift */,
 				0D90701F2631B97500855895 /* GameScene.swift */,
-				0DB6F26926441EC700CC8D79 /* StartScene.swift */,
+				0DB6F26926441EC700CC8D79 /* StartGame.swift */,
 				0DB6F26626441E3B00CC8D79 /* GameOver.swift */,
 			);
 			name = GameControllers;
@@ -367,7 +367,7 @@
 				0DB6F26726441E3B00CC8D79 /* GameOver.swift in Sources */,
 				0D90701A2631B97500855895 /* AppDelegate.swift in Sources */,
 				0DB6F257264419D400CC8D79 /* Seed.swift in Sources */,
-				0DB6F26A26441EC700CC8D79 /* StartScene.swift in Sources */,
+				0DB6F26A26441EC700CC8D79 /* StartGame.swift in Sources */,
 				0DB6F26126441C0400CC8D79 /* Canyon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

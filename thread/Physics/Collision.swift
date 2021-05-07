@@ -12,7 +12,7 @@ struct CollisionBitMask {
     static let rockCategory:UInt32 = 0x1 << 1
     static let canyonCategory:UInt32 = 0x1 << 2
     static let fireflyCategory:UInt32 = 0x1 << 3
-    static let boloCategory:UInt32 = 0x1 << 4
+    static let orbCategory:UInt32 = 0x1 << 4
 
 }
 
@@ -40,9 +40,10 @@ extension GameScene {
 
         if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.fireflyCategory  {
               disperseFireFlies()
+              addOrb()
             if secondBody.node?.position != nil {
               secondBody.node?.removeFromParent()
-                createOrb()
+                //createOrb()
 
             }
             

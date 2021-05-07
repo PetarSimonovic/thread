@@ -10,9 +10,10 @@ import SpriteKit
 
 extension GameScene {
     
+
+    
     func displayTitle() -> SKSpriteNode {
-        
-        let title = SKSpriteNode(imageNamed: "threadtitle")
+        title = SKSpriteNode(imageNamed: "threadtitle")
         title.position = CGPoint(x: self.frame.midX, y:self.frame.midY + 50)
         title.setScale(0.8)
         title.name = "title"
