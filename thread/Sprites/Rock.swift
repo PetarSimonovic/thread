@@ -57,5 +57,11 @@ extension GameScene {
         
     }
     
+    func explodeRock(_ contact: SKPhysicsContact) {
+        if let rockExplosion = SKEmitterNode(fileNamed: "rockExplosion") {
+          rockExplosion.position = contact.contactPoint
+          addChild(rockExplosion)
+        }
+    }
 
 }

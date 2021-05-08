@@ -26,16 +26,16 @@ extension GameScene {
         print(firstBody)
         print(secondBody)
         
-        checkSeedCanyon(firstBody, secondBody)
-        checkSeedFirefly(firstBody, secondBody)
-        checkOrbRock(firstBody, secondBody)
+        checkSeedCanyon(firstBody, secondBody, contact)
+        checkSeedFirefly(firstBody, secondBody, contact)
+        checkOrbRock(firstBody, secondBody, contact)
  
                 
 //            }
             
         }
     
-    func checkSeedCanyon(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody) {
+    func checkSeedCanyon(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody, _ contact: SKPhysicsContact) {
         
         if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory || firstBody.categoryBitMask == CollisionBitMask.canyonCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory  {
             isDead = true
@@ -49,13 +49,14 @@ extension GameScene {
         print("Death: \(isDead)")
     }
     
-    func checkSeedFirefly(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody) {
+    func checkSeedFirefly(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody, _ contact: SKPhysicsContact) {
         
         if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.fireflyCategory  {
               disperseFireFlies()
             //  addOrb()
             if secondBody.node?.position != nil {
               secondBody.node?.removeFromParent()
+            
                 //createOrb()
             }
             
@@ -72,12 +73,12 @@ extension GameScene {
             }
         }
     
-    func checkOrbRock(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody) {
+    func checkOrbRock(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody, _ contact: SKPhysicsContact) {
         
         if firstBody.categoryBitMask == CollisionBitMask.orbCategory && secondBody.categoryBitMask == CollisionBitMask.rockCategory {
-            //  addOrb()
             if secondBody.node?.position != nil {
-              secondBody.node?.removeFromParent()
+              explodeRock(contact)
+            secondBody.node?.removeFromParent()
 
                 //createOrb()
             }
@@ -86,6 +87,7 @@ extension GameScene {
             if firstBody.categoryBitMask == CollisionBitMask.rockCategory && secondBody.categoryBitMask == CollisionBitMask.orbCategory  {
                 //  addOrb()
                 if firstBody.node?.position != nil {
+                  explodeRock(contact)
                   firstBody.node?.removeFromParent()
                     //createOrb()
 
