@@ -74,16 +74,18 @@ extension GameScene {
         print ("throwing!")
         
         
-        enumerateChildNodes(withName: "orbOrbit", using: ({
-            (node, error) in
-            let orb = node
-            orb.position = self.seed.position
-            orb.removeFromParent()
-            self.launchOrb()
-                //print(bg.position.x)          //      print(self.distance)
-            //    print("rock position \(rock.position)")
+//        enumerateChildNodes(withName: "orbOrbit", using: ({
+//            (node, error) in
+//            let orb = node
+//            orb.position = self.seed.position
+//            orb.removeFromParent()
+//            self.launchOrb()
+//    }))
+        let orb = childNode(withName: "orbOrbit")
+        orb?.removeFromParent()
+        launchOrb()
         
-        }))
+ 
                           // print(orb.position)
              
    
@@ -108,14 +110,9 @@ extension GameScene {
             (node, error) in
             let orb = node
             orb.position = self.seed.position
-                //print(bg.position.x)          //      print(self.distance)
-            //    print("rock position \(rock.position)")
         
-        }))       // orb.position = CGPoint(x: orb.position.x + 1.5, y: orb.position.y)
-      //  orb.physicsBody?.velocity = CGVector(dx: 100, dy: 100)
-     //  orbOrbit.physicsBody?.applyImpulse(CGVector(dx: 5, dy: 5))
-      //  orb.physicsBody?.applyTorque(CGFloat(0.1))
-    //      orb.physicsBody?.applyForce(CGVector(dx: 100.5, dy: 100.5))
+        }))
+
 
 
 
