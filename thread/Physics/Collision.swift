@@ -13,6 +13,8 @@ struct CollisionBitMask {
     static let canyonCategory:UInt32 = 0x1 << 2
     static let fireflyCategory:UInt32 = 0x1 << 3
     static let orbCategory:UInt32 = 0x0 << 4
+    static let orbitCategory:UInt32 = 0x0 << 4
+
 
 }
 
@@ -23,13 +25,14 @@ extension GameScene {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
         
-        print(firstBody)
-        print(secondBody)
+      
         
         checkSeedCanyon(firstBody, secondBody, contact)
         checkSeedRock(firstBody, secondBody)
         checkSeedFirefly(firstBody, secondBody, contact)
         checkOrbRock(firstBody, secondBody, contact)
+        checkOrbCanyon(firstBody, secondBody, contact)
+
  
                 
 //            }
@@ -82,16 +85,18 @@ extension GameScene {
     
     func checkOrbRock(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody, _ contact: SKPhysicsContact) {
         
-        if firstBody.categoryBitMask == CollisionBitMask.orbCategory && secondBody.categoryBitMask == CollisionBitMask.rockCategory {
+        
+        if firstBody.categoryBitMask == CollisionBitMask.orbCategory || firstBody.categoryBitMask == CollisionBitMask.orbitCategory && secondBody.categoryBitMask == CollisionBitMask.rockCategory {
             if secondBody.node?.position != nil {
               explodeRock(contact)
             secondBody.node?.removeFromParent()
 
                 //createOrb()
             }
+            checkStaticOrb(firstBody, secondBody, contact)
             
         }
-            if firstBody.categoryBitMask == CollisionBitMask.rockCategory && secondBody.categoryBitMask == CollisionBitMask.orbCategory  {
+            if firstBody.categoryBitMask == CollisionBitMask.rockCategory && secondBody.categoryBitMask == CollisionBitMask.orbCategory || secondBody.categoryBitMask == CollisionBitMask.orbitCategory {
                 //  addOrb()
                 if firstBody.node?.position != nil {
                   explodeRock(contact)
@@ -99,8 +104,46 @@ extension GameScene {
                     //createOrb()
 
                 }
+                checkStaticOrb(firstBody, secondBody, contact)
 
             }
         }
+    
+    func checkStaticOrb(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody, _ contact: SKPhysicsContact) {
+        
+        if firstBody.categoryBitMask == CollisionBitMask.orbitCategory {
+          let position = contact.contactPoint
+          launchOrb(position, false)
+          firstBody.node?.removeFromParent()
+        }
+
+        if secondBody.categoryBitMask == CollisionBitMask.orbitCategory {
+          let position = contact.contactPoint
+          launchOrb(position, false)
+        secondBody.node?.removeFromParent()
+        }
+    }
+    
+    func checkOrbCanyon(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody, _ contact: SKPhysicsContact) {
+        
+            
+        if firstBody.categoryBitMask == CollisionBitMask.orbCategory || firstBody.categoryBitMask == CollisionBitMask.orbitCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory   {
+                if let explosion = SKEmitterNode(fileNamed: "firefly2") {
+                    explosion.position = contact.contactPoint
+                    addChild(explosion)
+                }
+            firstBody.node?.removeFromParent()
+                }
+        
+        if firstBody.categoryBitMask == CollisionBitMask.canyonCategory && secondBody.categoryBitMask == CollisionBitMask.orbitCategory || secondBody.categoryBitMask == CollisionBitMask.orbCategory   {
+                if let explosion = SKEmitterNode(fileNamed: "firefly2") {
+                    explosion.position = contact.contactPoint
+                    addChild(explosion)
+                }
+            secondBody.node?.removeFromParent()
+                }
+                
+                
+    }
 
 }

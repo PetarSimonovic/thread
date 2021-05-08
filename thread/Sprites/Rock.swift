@@ -44,7 +44,7 @@ extension GameScene {
         rock.position = CGPoint(x: rock.position.x - 1.5, y: rock.position.y)
         let mass = rock.physicsBody?.mass
         rock.physicsBody?.applyForce(CGVector(dx: 0, dy: mass! * 600))
-        if rock.position.x <= -rock.size.width {
+        if rock.position.x <= -rock.size.width || rock.position.y < 0 {
             //print(bg.position.x)
             rock.removeFromParent()
             self.nodeCount -= 1

@@ -23,8 +23,8 @@ extension GameScene {
     seed.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
     seed.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory | CollisionBitMask.fireflyCategory
     
-    seed.physicsBody?.linearDamping = 0.55 // simulates air friction (value between 0 and 1)
-    seed.physicsBody?.restitution = 0.8 // how much energy object loses when it hits another (value between 0 and 1)
+    seed.physicsBody?.linearDamping = 0.75 // simulates air friction (value between 0 and 1)
+    seed.physicsBody?.restitution = 0.9 // how much energy object loses when it hits another (value between 0 and 1)
     seed.physicsBody?.affectedByGravity = false
     seed.physicsBody?.isDynamic = true
     return seed
