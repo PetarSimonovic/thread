@@ -51,19 +51,21 @@ extension GameScene {
         dynamicOrb.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory | CollisionBitMask.fireflyCategory
         dynamicOrb.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         dynamicOrb.physicsBody?.isDynamic = true
-        dynamicOrb.physicsBody?.density = CGFloat(100)
+       // dynamicOrb.physicsBody?.density = CGFloat(100)
         dynamicOrb.position = seed.position
         dynamicOrb.name = "dynamicOrb"
+        dynamicOrb.physicsBody?.mass = 1000
+        //seed.physicsBody?.linearDamping = 0.55 // simulates air friction (value between 0 and 1)
+        seed.physicsBody?.restitution = 1
        // bolo.setScale(0.5)
         addChild(dynamicOrb)
         if let orbParticles = SKEmitterNode(fileNamed: "firefly") {
             dynamicOrb.addChild(orbParticles)
         }
-        dynamicOrb.physicsBody?.velocity = CGVector(dx: 200, dy: 100)
         let velocity = CGFloat((seed.physicsBody?.velocity.dy)!)
         print(velocity)
-        dynamicOrb.physicsBody?.velocity = CGVector(dx: velocity * 3, dy: velocity)
-        dynamicOrb.physicsBody?.applyForce(CGVector(dx: velocity * 3, dy: velocity))
+        dynamicOrb.physicsBody?.velocity = CGVector(dx: velocity * 4, dy: velocity)
+        dynamicOrb.physicsBody?.applyForce(CGVector(dx: velocity * 4, dy: velocity))
 
     }
     

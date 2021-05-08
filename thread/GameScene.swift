@@ -35,7 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var isLeft : Bool = false
     var distance = CGFloat(0.0)
     var flight = false
-    var difficulty = 4
+    var difficulty = 10
     var thrownOrb: Bool = false
     var touch = UITouch()
 

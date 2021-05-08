@@ -14,7 +14,7 @@ extension GameScene {
     // Assign image and position
     let seed = SKSpriteNode(imageNamed: "threadship")
     seed.size = CGSize(width: 20, height: 20)
-    seed.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+    seed.position = CGPoint(x: self.frame.midX/2, y: self.frame.midY)
     
     seed.physicsBody = SKPhysicsBody(texture: seed.texture!, size: seed.size)
    

@@ -25,8 +25,17 @@ extension GameScene {
         
         print(firstBody)
         print(secondBody)
+        
+        checkSeedCanyon(firstBody, secondBody)
+        checkSeedFirefly(firstBody, secondBody)
  
                 
+//            }
+            
+        }
+    
+    func checkSeedCanyon(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody) {
+        
         if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory || firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory  {
             isDead = true
             if let explosion = SKEmitterNode(fileNamed: "Explosion") {
@@ -35,29 +44,29 @@ extension GameScene {
             }
             seed.removeFromParent()
             }
+    }
+    
+    func checkSeedFirefly(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody) {
         
-            
-
         if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.fireflyCategory  {
               disperseFireFlies()
             //  addOrb()
             if secondBody.node?.position != nil {
               secondBody.node?.removeFromParent()
                 //createOrb()
-
             }
             
         }
-        if firstBody.categoryBitMask == CollisionBitMask.fireflyCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory  {
-              disperseFireFlies()
-//            if secondBody.node?.position != nil {
-//              secondBody.node?.removeFromParent()
-//            }
-            
-        }
-        }
-            
+            if firstBody.categoryBitMask == CollisionBitMask.fireflyCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory  {
+                  disperseFireFlies()
+                //  addOrb()
+                if secondBody.node?.position != nil {
+                  secondBody.node?.removeFromParent()
+                    //createOrb()
 
-       
-  
+                }
+
+            }
+        }
+            
 }
