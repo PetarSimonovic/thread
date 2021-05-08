@@ -36,9 +36,9 @@ extension GameScene {
 
 func seedThrust() {
     print("Thrust!")
-    seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.25))
+    seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.2))
     seed.physicsBody?.applyTorque(CGFloat(0.009))
-    seed.physicsBody?.velocity = CGVector(dx: 0, dy: 100)
+    seed.physicsBody?.velocity = CGVector(dx: 0, dy: (seed.physicsBody?.velocity.dy)! + 100)
   }
     
   func seedFlight() {

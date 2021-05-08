@@ -24,13 +24,17 @@ extension GameScene {
         let fireflyheight = CGFloat.random(in: -50.00...50.00)
         firefly.position = CGPoint(x: self.frame.midX +  (self.frame.width/2), y: self.frame.midY + fireflyheight )
           firefly.name = "firefly"
-        self.addChild(firefly)
+        addChild(firefly)
         firefly.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
-        firefly.setScale(0.1)
+        firefly.setScale(0.05)
         let time = Float.random(in: (0.5...1))
         let spin = [Double.pi, -Double.pi].randomElement()!
         let rotate = SKAction.rotate(byAngle: CGFloat(spin), duration: TimeInterval(time))
         firefly.run(SKAction.repeatForever(rotate))
+//        if let fireFlyParticles = SKEmitterNode(fileNamed: "firefly") {
+//            firefly.addChild(fireFlyParticles)
+//
+//        }
     }
     }
     

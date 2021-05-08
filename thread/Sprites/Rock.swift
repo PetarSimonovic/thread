@@ -18,7 +18,7 @@ extension GameScene {
               rock.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
               rock.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory | CollisionBitMask.rockCategory
               rock.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory | CollisionBitMask.rockCategory
-              rock.physicsBody?.isDynamic = false
+              rock.physicsBody?.isDynamic = true
               rock.physicsBody?.affectedByGravity = false
             rock.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
             let height = CGFloat.random(in: -150.00...150.00)
@@ -42,6 +42,8 @@ extension GameScene {
         (node, error) in
         let rock = node as! SKSpriteNode
         rock.position = CGPoint(x: rock.position.x - 1.5, y: rock.position.y)
+        let mass = rock.physicsBody?.mass
+        rock.physicsBody?.applyForce(CGVector(dx: 0, dy: mass! * 10))
         if rock.position.x <= -rock.size.width {
             //print(bg.position.x)
             rock.removeFromParent()

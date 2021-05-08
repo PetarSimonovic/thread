@@ -12,7 +12,7 @@ extension GameScene {
     
     func addOrb() {
         print("Bolo addad")
-        let orb = SKSpriteNode(imageNamed: "bolo")
+        let orb = SKSpriteNode()
         orb.size = CGSize(width: 10, height: 10)
       //  orb.physicsBody?.linearDamping = 0.0 // simulates air friction (value between 0 and 1)
        // orb.physicsBody?.restitution = 0.0 // how much energy object loses when it hits another (value between 0 and 1)
@@ -31,11 +31,15 @@ extension GameScene {
         print(orb)
         print(orbOrbit)
         print(seed)
+        if let orbParticles = SKEmitterNode(fileNamed: "firefly") {
+            orb.addChild(orbParticles)
+        }
+
               
     }
     
     func launchOrb() {
-        let dynamicOrb = SKSpriteNode(imageNamed: "bolo")
+        let dynamicOrb = SKSpriteNode()
         dynamicOrb.size = CGSize(width: 10, height: 10)
         dynamicOrb.physicsBody = SKPhysicsBody(circleOfRadius: 5)
       //  orb.physicsBody?.linearDamping = 0.0 // simulates air friction (value between 0 and 1)
@@ -52,8 +56,14 @@ extension GameScene {
         dynamicOrb.name = "dynamicOrb"
        // bolo.setScale(0.5)
         addChild(dynamicOrb)
+        if let orbParticles = SKEmitterNode(fileNamed: "firefly") {
+            dynamicOrb.addChild(orbParticles)
+        }
         dynamicOrb.physicsBody?.velocity = CGVector(dx: 200, dy: 100)
-        dynamicOrb.physicsBody?.applyForce(CGVector(dx: 200, dy: 100))
+        let velocity = CGFloat((seed.physicsBody?.velocity.dy)!)
+        print(velocity)
+        dynamicOrb.physicsBody?.velocity = CGVector(dx: velocity * 3, dy: velocity)
+        dynamicOrb.physicsBody?.applyForce(CGVector(dx: velocity * 3, dy: velocity))
 
     }
     
