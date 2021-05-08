@@ -43,7 +43,7 @@ extension GameScene {
         let rock = node as! SKSpriteNode
         rock.position = CGPoint(x: rock.position.x - 1.5, y: rock.position.y)
         let mass = rock.physicsBody?.mass
-        rock.physicsBody?.applyForce(CGVector(dx: 0, dy: mass! * 10))
+        rock.physicsBody?.applyForce(CGVector(dx: 0, dy: mass! * 600))
         if rock.position.x <= -rock.size.width {
             //print(bg.position.x)
             rock.removeFromParent()
