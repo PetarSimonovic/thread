@@ -11,11 +11,14 @@ import SpriteKit
 extension GameScene {
     
     func checkDeath() {
-        
     if seed.position.x <= -seed.size.width || seed.position.y < 0 {
         isDead = true
         seed.removeFromParent()
     }
+        
+        if isDead == true {
+            disperseFireFlies()
+        }
     
     if isDead == true && nodeCount == 0 {
        gameOver()

@@ -27,6 +27,7 @@ extension GameScene {
         print(secondBody)
         
         checkSeedCanyon(firstBody, secondBody, contact)
+        checkSeedRock(firstBody, secondBody)
         checkSeedFirefly(firstBody, secondBody, contact)
         checkOrbRock(firstBody, secondBody, contact)
  
@@ -45,14 +46,20 @@ extension GameScene {
             }
             seed.removeFromParent()
             }
+            }
+    
+    func checkSeedRock(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody) {
         
-        print("Death: \(isDead)")
+        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.rockCategory || firstBody.categoryBitMask == CollisionBitMask.rockCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory  {
+              isDead = true
+            }
+            
     }
     
     func checkSeedFirefly(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody, _ contact: SKPhysicsContact) {
         
         if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.fireflyCategory  {
-              disperseFireFlies()
+            collectOrb()
             //  addOrb()
             if secondBody.node?.position != nil {
               secondBody.node?.removeFromParent()
@@ -62,7 +69,7 @@ extension GameScene {
             
         }
             if firstBody.categoryBitMask == CollisionBitMask.fireflyCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory  {
-                  disperseFireFlies()
+                  collectOrb()
                 //  addOrb()
                 if firstBody.node?.position != nil {
                   firstBody.node?.removeFromParent()

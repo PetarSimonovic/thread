@@ -77,6 +77,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if isGameStarted == true {
             self.distance += 0.001
           //  throwOrb()
+            print(isDead)
             
             if flight == true {
                 seedFlight()

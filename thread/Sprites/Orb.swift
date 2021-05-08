@@ -28,9 +28,6 @@ extension GameScene {
         orbOrbit.addChild(orb)
         let rotate = SKAction.rotate(byAngle: CGFloat(0.5), duration: TimeInterval(0.1))
         orbOrbit.run(SKAction.repeatForever(rotate))
-        print(orb)
-        print(orbOrbit)
-        print(seed)
         if let orbParticles = SKEmitterNode(fileNamed: "firefly") {
             orb.addChild(orbParticles)
         }
@@ -54,7 +51,7 @@ extension GameScene {
        // dynamicOrb.physicsBody?.density = CGFloat(100)
         dynamicOrb.position = seed.position
         dynamicOrb.name = "dynamicOrb"
-        dynamicOrb.physicsBody?.mass = 1000
+       // dynamicOrb.physicsBody?.mass = 1000
         //seed.physicsBody?.linearDamping = 0.55 // simulates air friction (value between 0 and 1)
         seed.physicsBody?.restitution = 1
        // bolo.setScale(0.5)
@@ -81,9 +78,14 @@ extension GameScene {
 //            orb.removeFromParent()
 //            self.launchOrb()
 //    }))
-        let orb = childNode(withName: "orbOrbit")
-        orb?.removeFromParent()
-        launchOrb()
+        let orbOrbit = childNode(withName: "orbOrbit")
+        if orbOrbit != nil {
+          orbOrbit?.removeAllActions()
+            let rotate = SKAction.rotate(byAngle: 360, duration: 0.5)
+        let remove = SKAction.removeFromParent()
+        let sequence = SKAction.sequence([rotate, remove])
+        orbOrbit?.run(sequence, completion: launchOrb)
+                }
         
  
                           // print(orb.position)

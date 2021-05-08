@@ -54,14 +54,41 @@ extension GameScene {
         
     }
     
-    func disperseFireFlies() {
+    func collectOrb() {
         if let fireflyDisperse = SKEmitterNode(fileNamed: "firefly2") {
           fireflyDisperse.position = seed.position
           addChild(fireflyDisperse)
           addOrb()
-        
         }
     }
+    
+    func disperseFireFlies() {
+    
+    enumerateChildNodes(withName: "firefly", using: ({
+        (node, error) in
+        let firefly = node as! SKSpriteNode
+        if let fireflyDisperse = SKEmitterNode(fileNamed: "firefly2") {
+          fireflyDisperse.position = firefly.position
+            self.addChild(fireflyDisperse)
+        }
+        firefly.removeFromParent()
+
+    }))
+        
+        enumerateChildNodes(withName: "orbOrbit", using: ({
+            (node, error) in
+            let orb = node
+            if let fireflyDisperse = SKEmitterNode(fileNamed: "firefly2") {
+              fireflyDisperse.position = orb.position
+            self.addChild(fireflyDisperse)
+            }
+            orb.removeFromParent()
+
+        }))
+        
+    }
+    
+    
     
     
 }

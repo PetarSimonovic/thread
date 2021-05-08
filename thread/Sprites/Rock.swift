@@ -61,6 +61,7 @@ extension GameScene {
         if let rockExplosion = SKEmitterNode(fileNamed: "rockExplosion") {
           rockExplosion.position = contact.contactPoint
           addChild(rockExplosion)
+         nodeCount -= 1
         }
     }
 
