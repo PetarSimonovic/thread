@@ -71,6 +71,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update (_ currentTime: TimeInterval) {
         
+        checkDeath()
+
+        
         if isGameStarted == true {
             self.distance += 0.001
           //  throwOrb()
@@ -82,7 +85,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             moveOrb()
             moveRocks()
             moveFireFlies()
-            checkDeath()
         }
         
     }

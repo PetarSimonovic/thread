@@ -28,6 +28,7 @@ extension GameScene {
         
         checkSeedCanyon(firstBody, secondBody)
         checkSeedFirefly(firstBody, secondBody)
+        checkOrbRock(firstBody, secondBody)
  
                 
 //            }
@@ -36,7 +37,7 @@ extension GameScene {
     
     func checkSeedCanyon(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody) {
         
-        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory || firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory  {
+        if firstBody.categoryBitMask == CollisionBitMask.seedCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory || firstBody.categoryBitMask == CollisionBitMask.canyonCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory  {
             isDead = true
             if let explosion = SKEmitterNode(fileNamed: "Explosion") {
               explosion.position = seed.position
@@ -44,6 +45,8 @@ extension GameScene {
             }
             seed.removeFromParent()
             }
+        
+        print("Death: \(isDead)")
     }
     
     func checkSeedFirefly(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody) {
@@ -60,13 +63,35 @@ extension GameScene {
             if firstBody.categoryBitMask == CollisionBitMask.fireflyCategory && secondBody.categoryBitMask == CollisionBitMask.seedCategory  {
                   disperseFireFlies()
                 //  addOrb()
-                if secondBody.node?.position != nil {
-                  secondBody.node?.removeFromParent()
+                if firstBody.node?.position != nil {
+                  firstBody.node?.removeFromParent()
                     //createOrb()
 
                 }
 
             }
         }
+    
+    func checkOrbRock(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody) {
+        
+        if firstBody.categoryBitMask == CollisionBitMask.orbCategory && secondBody.categoryBitMask == CollisionBitMask.rockCategory {
+            //  addOrb()
+            if secondBody.node?.position != nil {
+              secondBody.node?.removeFromParent()
+
+                //createOrb()
+            }
             
+        }
+            if firstBody.categoryBitMask == CollisionBitMask.rockCategory && secondBody.categoryBitMask == CollisionBitMask.orbCategory  {
+                //  addOrb()
+                if firstBody.node?.position != nil {
+                  firstBody.node?.removeFromParent()
+                    //createOrb()
+
+                }
+
+            }
+        }
+
 }
