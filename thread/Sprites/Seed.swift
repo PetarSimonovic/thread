@@ -36,18 +36,29 @@ extension GameScene {
 
 func seedThrust() {
     print("Thrust!")
-    seed.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 0.2))
-    seed.physicsBody?.applyTorque(CGFloat(0.009))
-    seed.physicsBody?.velocity = CGVector(dx: 0, dy: (seed.physicsBody?.velocity.dy)! + 100)
-  }
+    if isLeft == true {
+        seed.physicsBody?.applyImpulse(CGVector(dx: -0.15, dy: 0.32))
+    }
+    else if isRight == true {
+        seed.physicsBody?.applyImpulse(CGVector(dx: 0.15, dy: 0.32))
+
+    }
+        seed.physicsBody?.applyTorque(CGFloat(0.01))
+        }
     
   func seedFlight() {
-    seed.physicsBody?.applyForce(CGVector(dx: 0, dy: 0.5))
-}
+    if isLeft == true {
+        seed.physicsBody?.applyForce(CGVector(dx: -0.1, dy: 0.3))
+    }
+    else if isRight == true {
+        seed.physicsBody?.applyForce(CGVector(dx: 0.1, dy: 0.3))
+
+    }
 
     
 }
-
+    
+}
 
 // PHYSICS NOTES
 

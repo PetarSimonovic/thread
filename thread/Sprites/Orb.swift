@@ -58,9 +58,8 @@ extension GameScene {
        // dynamicOrb.physicsBody?.density = CGFloat(100)
         dynamicOrb.position = position
         dynamicOrb.name = "dynamicOrb"
-        dynamicOrb.physicsBody?.mass = 1000
         //seed.physicsBody?.linearDamping = 0.55 // simulates air friction (value between 0 and 1)
-        dynamicOrb.physicsBody?.restitution = 0.9
+        dynamicOrb.physicsBody?.restitution = 0.1
        // bolo.setScale(0.5)
         addChild(dynamicOrb)
         if let orbParticles = SKEmitterNode(fileNamed: "firefly") {
@@ -70,8 +69,7 @@ extension GameScene {
             print("tapped!")
         let velocity = CGFloat((seed.physicsBody?.velocity.dy)!)
         print(velocity)
-            dynamicOrb.physicsBody?.velocity = CGVector(dx: velocity * 3.5, dy: velocity)
-            dynamicOrb.physicsBody?.applyForce(CGVector(dx: velocity * 3.5, dy: velocity))
+            dynamicOrb.physicsBody?.applyForce(CGVector(dx: 100, dy: 3))
         }
 
     }

@@ -49,6 +49,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if isDead == false {
             for touch in touches {
+                let location = touch.location(in: self)
+                
+                if(location.x < self.size.width/2){
+                    isLeft = true
+                    isRight = false
+                    print("Left")
+                }
+                
+                if(location.x > self.size.width/2){
+                    isRight = true
+                    isLeft = false
+                    print("Right")
+                }
+
                 if touch.tapCount == 2 {
                     print("DoubleTap")
                     throwOrb()

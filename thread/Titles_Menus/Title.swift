@@ -24,9 +24,7 @@ extension GameScene {
     
     func removeTitle() {
         let fade = SKAction.fadeOut(withDuration: 3)
-        let moveSeed = SKAction.moveTo(x: self.frame.midX/2, duration: 1)
         title.run(fade)
-        seed.run(moveSeed)
     }
     
     
