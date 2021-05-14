@@ -52,24 +52,28 @@ extension GameScene {
         // Add collision masks
         dynamicOrb.physicsBody?.categoryBitMask = CollisionBitMask.orbCategory
         dynamicOrb.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
-        dynamicOrb.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory | CollisionBitMask.fireflyCategory
+        dynamicOrb.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
         dynamicOrb.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+     //   dynamicOrb.physicsBody?.restitution = 0.8
         dynamicOrb.physicsBody?.isDynamic = true
        // dynamicOrb.physicsBody?.density = CGFloat(100)
         dynamicOrb.position = position
         dynamicOrb.name = "dynamicOrb"
-        //seed.physicsBody?.linearDamping = 0.55 // simulates air friction (value between 0 and 1)
-        dynamicOrb.physicsBody?.restitution = 0.1
-       // bolo.setScale(0.5)
+        dynamicOrb.physicsBody?.linearDamping = 0.0 // simulates air friction (value between 0 and 1)
+        dynamicOrb.physicsBody?.restitution = 1.0
+        dynamicOrb.physicsBody?.friction = 0
+
         addChild(dynamicOrb)
         if let orbParticles = SKEmitterNode(fileNamed: "firefly") {
             dynamicOrb.addChild(orbParticles)
         }
         if tap == true {
             print("tapped!")
-        let velocity = CGFloat((seed.physicsBody?.velocity.dy)!)
-        print(velocity)
-            dynamicOrb.physicsBody?.applyForce(CGVector(dx: 100, dy: 3))
+            dynamicOrb.physicsBody?.applyForce(CGVector(dx: 100, dy: 1.5))
+            dynamicOrb.physicsBody?.velocity = CGVector(dx: 300, dy: 100)
+         //   dynamicOrb.physicsBody?.applyTorque(CGFloat(1000))
+
+
         }
 
     }

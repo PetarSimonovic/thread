@@ -16,8 +16,8 @@ extension GameScene {
           let rock = SKSpriteNode(imageNamed: "rock_\(element)")
               rock.physicsBody = SKPhysicsBody(texture: rock.texture!, size: rock.texture!.size())
               rock.physicsBody?.categoryBitMask = CollisionBitMask.rockCategory
-              rock.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory | CollisionBitMask.rockCategory
-              rock.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory | CollisionBitMask.rockCategory
+              rock.physicsBody?.collisionBitMask = CollisionBitMask.seedCategory | CollisionBitMask.rockCategory | CollisionBitMask.orbCategory
+              rock.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory | CollisionBitMask.rockCategory | CollisionBitMask.orbCategory
               rock.physicsBody?.isDynamic = true
               rock.physicsBody?.affectedByGravity = false
             rock.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)

@@ -38,6 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var difficulty = 10
     var thrownOrb: Bool = false
     var touch = UITouch()
+    var xForce = 0
 
     override func didMove(to view: SKView) {
         createScene()
