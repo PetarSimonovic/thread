@@ -92,7 +92,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if isGameStarted == true {
             distance += 0.001
-            difficulty = Int(floor(distance))
+            difficulty = Int(floor(distance)) * 2
             print(difficulty)
           //  throwOrb()
             if flight == true {

@@ -61,7 +61,7 @@ extension GameScene {
         //dynamicOrb.physicsBody?.mass = CGFloat(100)
         dynamicOrb.position = position
         dynamicOrb.name = "dynamicOrb"
-        dynamicOrb.physicsBody?.linearDamping = 0.55 // simulates air friction (value between 0 and 1)
+        dynamicOrb.physicsBody?.linearDamping = 0.3 // simulates air friction (value between 0 and 1)
       //  dynamicOrb.physicsBody?.restitution = 1.0
         dynamicOrb.physicsBody?.friction = 0
 
@@ -71,7 +71,7 @@ extension GameScene {
         }
         if tap == true {
             print("tapped!")
-            dynamicOrb.physicsBody?.applyForce(CGVector(dx: 100, dy: 3.5))
+            dynamicOrb.physicsBody?.applyForce(CGVector(dx: 100, dy: 5.5))
             //dynamicOrb.physicsBody?.velocity = CGVector(dx: 00, dy: 100)
          //  dynamicOrb.physicsBody?.applyTorque(CGFloat(1000))
 
