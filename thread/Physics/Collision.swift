@@ -31,7 +31,7 @@ extension GameScene {
         checkSeedRock(firstBody, secondBody)
         checkSeedFirefly(firstBody, secondBody, contact)
         checkOrbRock(firstBody, secondBody, contact)
-        checkOrbCanyon(firstBody, secondBody, contact)
+//        checkOrbCanyon(firstBody, secondBody, contact)
 
  
                 
@@ -111,23 +111,32 @@ extension GameScene {
     
     func checkStaticOrb(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody, _ contact: SKPhysicsContact) {
         
-        if firstBody.categoryBitMask == CollisionBitMask.orbitCategory {
+        if firstBody.categoryBitMask == CollisionBitMask.orbCategory || secondBody.categoryBitMask == CollisionBitMask.orbCategory {
+            print("DYNAMIC ORB")
+            return
+        } else if firstBody.categoryBitMask == CollisionBitMask.orbitCategory {
+          print("STATIC ORB")
           let position = contact.contactPoint
           launchOrb(position, false)
           firstBody.node?.removeFromParent()
-        }
+            print("ORB REMOVED on ROCK COLLISION")
 
-        if secondBody.categoryBitMask == CollisionBitMask.orbitCategory {
+        } else if secondBody.categoryBitMask == CollisionBitMask.orbitCategory {
+          print("STATIC ORB")
           let position = contact.contactPoint
           launchOrb(position, false)
         secondBody.node?.removeFromParent()
+            print("ORB REMOVED on ROCK COLLISION")
         }
+        
+        
     }
     
     func checkOrbCanyon(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody, _ contact: SKPhysicsContact) {
         
             
         if firstBody.categoryBitMask == CollisionBitMask.orbCategory || firstBody.categoryBitMask == CollisionBitMask.orbitCategory && secondBody.categoryBitMask == CollisionBitMask.canyonCategory   {
+            print("THIS THINKS IT's A CANYON COLLISION")
                 if let explosion = SKEmitterNode(fileNamed: "firefly2") {
                     explosion.position = contact.contactPoint
                     addChild(explosion)
@@ -136,6 +145,8 @@ extension GameScene {
                 }
         
         if firstBody.categoryBitMask == CollisionBitMask.canyonCategory && secondBody.categoryBitMask == CollisionBitMask.orbitCategory || secondBody.categoryBitMask == CollisionBitMask.orbCategory   {
+            print("THIS THINKS IT's A CANYON COLLISION")
+
                 if let explosion = SKEmitterNode(fileNamed: "firefly2") {
                     explosion.position = contact.contactPoint
                     addChild(explosion)

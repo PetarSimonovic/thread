@@ -54,13 +54,13 @@ extension GameScene {
         dynamicOrb.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
         dynamicOrb.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
         dynamicOrb.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-     //   dynamicOrb.physicsBody?.restitution = 0.8
+        dynamicOrb.physicsBody?.restitution = 1.0
         dynamicOrb.physicsBody?.isDynamic = true
-       // dynamicOrb.physicsBody?.density = CGFloat(100)
+        //dynamicOrb.physicsBody?.mass = CGFloat(100)
         dynamicOrb.position = position
         dynamicOrb.name = "dynamicOrb"
-        dynamicOrb.physicsBody?.linearDamping = 0.0 // simulates air friction (value between 0 and 1)
-        dynamicOrb.physicsBody?.restitution = 1.0
+        dynamicOrb.physicsBody?.linearDamping = 0.55 // simulates air friction (value between 0 and 1)
+      //  dynamicOrb.physicsBody?.restitution = 1.0
         dynamicOrb.physicsBody?.friction = 0
 
         addChild(dynamicOrb)
@@ -69,9 +69,9 @@ extension GameScene {
         }
         if tap == true {
             print("tapped!")
-            dynamicOrb.physicsBody?.applyForce(CGVector(dx: 100, dy: 1.5))
-            dynamicOrb.physicsBody?.velocity = CGVector(dx: 300, dy: 100)
-         //   dynamicOrb.physicsBody?.applyTorque(CGFloat(1000))
+            dynamicOrb.physicsBody?.applyForce(CGVector(dx: 100, dy: 3.5))
+            //dynamicOrb.physicsBody?.velocity = CGVector(dx: 00, dy: 100)
+         //  dynamicOrb.physicsBody?.applyTorque(CGFloat(1000))
 
 
         }

@@ -20,6 +20,7 @@ extension GameScene {
               rock.physicsBody?.contactTestBitMask = CollisionBitMask.seedCategory | CollisionBitMask.rockCategory | CollisionBitMask.orbCategory
               rock.physicsBody?.isDynamic = true
               rock.physicsBody?.affectedByGravity = false
+            rock.physicsBody?.restitution = CGFloat(0.3)
             rock.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
             let height = CGFloat.random(in: -150.00...150.00)
             rock.position = CGPoint(x: CGFloat(1.5) * self.frame.width, y: self.frame.midY + height )
