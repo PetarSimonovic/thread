@@ -11,6 +11,7 @@ import SpriteKit
 extension GameScene {
     
     func addOrb() {
+        orb += 1
         print("Orb added")
         let staticOrb = SKSpriteNode()
         staticOrb.size = CGSize(width: 10, height: 10)
@@ -27,7 +28,7 @@ extension GameScene {
         let orbOrbit = SKNode()
         orbOrbit.position = seed.position
         orbOrbit.name = "orbOrbit"
-        staticOrb.name = "orb"
+        staticOrb.name = "staticOrb"
         staticOrb.position = CGPoint(x: 20, y: 20)
        // bolo.setScale(0.5)
         addChild(orbOrbit)
@@ -37,7 +38,6 @@ extension GameScene {
         if let orbParticles = SKEmitterNode(fileNamed: "firefly") {
             staticOrb.addChild(orbParticles)
         }
-        orb += 1
 
               
     }
@@ -77,6 +77,7 @@ extension GameScene {
 
 
         }
+        print(orb)
 
     }
     

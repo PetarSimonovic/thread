@@ -12,8 +12,8 @@ struct CollisionBitMask {
     static let rockCategory:UInt32 = 0x1 << 1
     static let canyonCategory:UInt32 = 0x1 << 2
     static let fireflyCategory:UInt32 = 0x1 << 3
-    static let orbCategory:UInt32 = 0x0 << 4
-    static let orbitCategory:UInt32 = 0x0 << 4
+    static let orbCategory:UInt32 = 0x1 << 4
+    static let orbitCategory:UInt32 = 0x1 << 5
 
 
 }
@@ -110,6 +110,10 @@ extension GameScene {
     
     func checkStaticOrb(_ firstBody: SKPhysicsBody, _ secondBody: SKPhysicsBody, _ contact: SKPhysicsContact) {
         
+        print("Checking Static Orb")
+        print(firstBody)
+        print(secondBody)
+        
         if firstBody.categoryBitMask == CollisionBitMask.orbCategory || secondBody.categoryBitMask == CollisionBitMask.orbCategory {
             print("DYNAMIC ORB")
             return
@@ -118,6 +122,7 @@ extension GameScene {
           let position = contact.contactPoint
           launchOrb(position, false)
           firstBody.node?.removeFromParent()
+            orb -= 1
             print("ORB REMOVED on ROCK COLLISION")
 
         } else if secondBody.categoryBitMask == CollisionBitMask.orbitCategory {
@@ -125,6 +130,7 @@ extension GameScene {
           let position = contact.contactPoint
           launchOrb(position, false)
         secondBody.node?.removeFromParent()
+            orb -= 1
             print("ORB REMOVED on ROCK COLLISION")
         }
         

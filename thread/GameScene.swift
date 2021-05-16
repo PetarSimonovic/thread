@@ -67,6 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                 if touch.tapCount == 2 {
                     print("DoubleTap")
+                    print(orb)
                     throwOrb()
                 }
                 else if touch.tapCount == 1 {
@@ -93,7 +94,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if isGameStarted == true {
             distance += 0.001
             difficulty = Int(floor(distance)) * 2
-            print(difficulty)
+          //  print(difficulty)
           //  throwOrb()
             if flight == true {
                 seedFlight()
