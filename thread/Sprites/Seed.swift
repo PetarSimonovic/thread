@@ -27,6 +27,10 @@ extension GameScene {
     seed.physicsBody?.restitution = 0.9 // how much energy object loses when it hits another (value between 0 and 1)
     seed.physicsBody?.affectedByGravity = false
     seed.physicsBody?.isDynamic = true
+    if let seedParticles = SKEmitterNode(fileNamed: "threadship") {
+        seedParticles.setScale(CGFloat(0.2))
+        seed.addChild(seedParticles)
+    }
     return seed
       
   }

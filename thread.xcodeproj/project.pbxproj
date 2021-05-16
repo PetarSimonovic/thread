@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0D07383426401C880050ADF9 /* firefly2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D07383326401C880050ADF9 /* firefly2.sks */; };
 		0D33CC6B2646A9EB00757299 /* rockExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D33CC6A2646A9EB00757299 /* rockExplosion.sks */; };
-		0D33CC6E2646DA7500757299 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D33CC6C2646DA7500757299 /* MyParticle.sks */; };
+		0D33CC6E2646DA7500757299 /* threadship.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D33CC6C2646DA7500757299 /* threadship.sks */; };
 		0D33CC6F2646DA7500757299 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D33CC6D2646DA7500757299 /* Assets.xcassets */; };
 		0D90701A2631B97500855895 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9070192631B97500855895 /* AppDelegate.swift */; };
 		0D90701C2631B97500855895 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D90701B2631B97500855895 /* GameScene.sks */; };
@@ -55,7 +55,7 @@
 /* Begin PBXFileReference section */
 		0D07383326401C880050ADF9 /* firefly2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = firefly2.sks; sourceTree = "<group>"; };
 		0D33CC6A2646A9EB00757299 /* rockExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = rockExplosion.sks; sourceTree = "<group>"; };
-		0D33CC6C2646DA7500757299 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		0D33CC6C2646DA7500757299 /* threadship.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = threadship.sks; sourceTree = "<group>"; };
 		0D33CC6D2646DA7500757299 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D9070162631B97500855895 /* thread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D9070192631B97500855895 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 				0D33CC6A2646A9EB00757299 /* rockExplosion.sks */,
 				0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */,
 				0DD73F312640009F00A22EC9 /* Explosion.sks */,
-				0D33CC6C2646DA7500757299 /* MyParticle.sks */,
+				0D33CC6C2646DA7500757299 /* threadship.sks */,
 				0D33CC6D2646DA7500757299 /* Assets.xcassets */,
 			);
 			path = Particles;
@@ -343,7 +343,7 @@
 				0DD73F322640009F00A22EC9 /* Explosion.sks in Resources */,
 				0DD73F342640068500A22EC9 /* firefly.sks in Resources */,
 				0D07383426401C880050ADF9 /* firefly2.sks in Resources */,
-				0D33CC6E2646DA7500757299 /* MyParticle.sks in Resources */,
+				0D33CC6E2646DA7500757299 /* threadship.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
