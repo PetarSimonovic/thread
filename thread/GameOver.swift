@@ -18,17 +18,15 @@ extension GameScene {
         
         if isDead == true {
             disperseFireFlies()
-        }
-    
-    if isDead == true && nodeCount == 0 {
-       gameOver()
-       restartGame()
+            gameOver()
     }
         
     }
     
     func gameOver() {
         print("Game Over")
+        let endGame = SKAction.sequence([SKAction.wait(forDuration: 3.0), SKAction.run(restartGame)])
+        self.run(endGame)
     }
     
 }

@@ -17,7 +17,7 @@ extension GameScene {
         staticOrb.physicsBody = SKPhysicsBody(circleOfRadius: 5)
         staticOrb.physicsBody?.categoryBitMask = CollisionBitMask.orbitCategory
         staticOrb.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory
-        staticOrb.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory  
+        staticOrb.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory
         staticOrb.physicsBody?.isDynamic = false
 
       //  orb.physicsBody?.linearDamping = 0.0 // simulates air friction (value between 0 and 1)
@@ -37,11 +37,13 @@ extension GameScene {
         if let orbParticles = SKEmitterNode(fileNamed: "firefly") {
             staticOrb.addChild(orbParticles)
         }
+        orb += 1
 
               
     }
     
     func launchOrb(_ position: CGPoint, _ tap: Bool) {
+        orb -= 1
         print("launching Orb")
         let dynamicOrb = SKSpriteNode(imageNamed: "bolo")
         dynamicOrb.size = CGSize(width: 10, height: 10)
@@ -83,13 +85,7 @@ extension GameScene {
         print ("throwing!")
         
         
-//        enumerateChildNodes(withName: "orbOrbit", using: ({
-//            (node, error) in
-//            let orb = node
-//            orb.position = self.seed.position
-//            orb.removeFromParent()
-//            self.launchOrb()
-//    }))
+        if orb > 0 {
         let orbOrbit = childNode(withName: "orbOrbit")
         if orbOrbit != nil {
           orbOrbit?.removeAllActions()
@@ -100,7 +96,7 @@ extension GameScene {
             let sequence = SKAction.sequence([rotate, remove, launch])
             orbOrbit?.run(sequence)
                 }
-        
+        }
  
                           // print(orb.position)
              

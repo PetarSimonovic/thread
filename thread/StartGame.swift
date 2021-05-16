@@ -36,7 +36,6 @@ extension GameScene {
         startRocks()
         startFireFlies()
         seed.physicsBody?.affectedByGravity = true
-        addOrb()
 
         
         isGameStarted = true
@@ -78,7 +77,8 @@ extension GameScene {
         distance = CGFloat(0.0)
         createScene()
         thrownOrb = false
-        
+        difficulty = 0
+        orb = 0
     }
     
     
