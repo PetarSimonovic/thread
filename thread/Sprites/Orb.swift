@@ -134,7 +134,6 @@ extension GameScene {
         let orb = node as! SKSpriteNode
         if orb.position.y < 0 {
             //print(bg.position.x)
-            print("orb removed")
             orb.removeFromParent()
           //  bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y: bg.position.y)
       //      print(self.distance)
