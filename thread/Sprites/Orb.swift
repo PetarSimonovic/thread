@@ -16,8 +16,8 @@ extension GameScene {
         staticOrb.size = CGSize(width: 10, height: 10)
         staticOrb.physicsBody = SKPhysicsBody(circleOfRadius: 5)
         staticOrb.physicsBody?.categoryBitMask = CollisionBitMask.orbitCategory
-        staticOrb.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
-        staticOrb.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory 
+        staticOrb.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory
+        staticOrb.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory  
         staticOrb.physicsBody?.isDynamic = false
 
       //  orb.physicsBody?.linearDamping = 0.0 // simulates air friction (value between 0 and 1)
@@ -51,8 +51,8 @@ extension GameScene {
         
         // Add collision masks
         dynamicOrb.physicsBody?.categoryBitMask = CollisionBitMask.orbCategory
-        dynamicOrb.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
-        dynamicOrb.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory | CollisionBitMask.canyonCategory
+        dynamicOrb.physicsBody?.collisionBitMask = CollisionBitMask.rockCategory
+        dynamicOrb.physicsBody?.contactTestBitMask = CollisionBitMask.rockCategory
         dynamicOrb.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         dynamicOrb.physicsBody?.restitution = 1.0
         dynamicOrb.physicsBody?.isDynamic = true

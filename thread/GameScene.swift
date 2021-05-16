@@ -35,7 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var isLeft : Bool = false
     var distance = CGFloat(0.0)
     var flight = false
-    var difficulty = 10
+    var difficulty = 1
     var thrownOrb: Bool = false
     var touch = UITouch()
     var xForce = 0
@@ -90,7 +90,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         
         if isGameStarted == true {
-            self.distance += 0.001
+            distance += 0.001
+            difficulty = Int(floor(distance))
+            print(difficulty)
           //  throwOrb()
             if flight == true {
                 seedFlight()

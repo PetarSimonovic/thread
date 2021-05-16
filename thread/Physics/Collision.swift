@@ -26,12 +26,11 @@ extension GameScene {
         let secondBody = contact.bodyB
         
       
-        
         checkSeedCanyon(firstBody, secondBody, contact)
         checkSeedRock(firstBody, secondBody)
         checkSeedFirefly(firstBody, secondBody, contact)
         checkOrbRock(firstBody, secondBody, contact)
-//        checkOrbCanyon(firstBody, secondBody, contact)
+       // checkOrbCanyon(firstBody, secondBody, contact)
 
  
                 
