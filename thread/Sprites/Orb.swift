@@ -82,6 +82,7 @@ extension GameScene {
     }
     
     func throwOrb () {
+        print(orb)
         
         print ("throwing!")
         

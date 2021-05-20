@@ -31,6 +31,7 @@ extension GameScene {
     func startGame () {
         
         removeTitle()
+        setScore()
         setGravity()
         createCanyon()
         startRocks()
@@ -71,10 +72,9 @@ extension GameScene {
         self.removeAllActions()
         isDead = false
         isGameStarted = false
-        score = 0
         nodeCount = 0
         acceleration = CGFloat(1)
-        distance = CGFloat(0.0)
+        distance = Double(0.0)
         createScene()
         thrownOrb = false
         difficulty = 0

@@ -11,6 +11,7 @@
 		0D33CC6B2646A9EB00757299 /* rockExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D33CC6A2646A9EB00757299 /* rockExplosion.sks */; };
 		0D33CC6E2646DA7500757299 /* threadship.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D33CC6C2646DA7500757299 /* threadship.sks */; };
 		0D33CC6F2646DA7500757299 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D33CC6D2646DA7500757299 /* Assets.xcassets */; };
+		0D57F2AF2652510E003263CC /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D57F2AE2652510E003263CC /* Score.swift */; };
 		0D90701A2631B97500855895 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9070192631B97500855895 /* AppDelegate.swift */; };
 		0D90701C2631B97500855895 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D90701B2631B97500855895 /* GameScene.sks */; };
 		0D90701E2631B97500855895 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D90701D2631B97500855895 /* Actions.sks */; };
@@ -33,6 +34,7 @@
 		0DD73F30263FFCDD00A22EC9 /* CanyonFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */; };
 		0DD73F322640009F00A22EC9 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F312640009F00A22EC9 /* Explosion.sks */; };
 		0DD73F342640068500A22EC9 /* firefly.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F332640068500A22EC9 /* firefly.sks */; };
+		0DE92CB12656A90900CE5F4B /* SaveScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE92CB02656A90900CE5F4B /* SaveScores.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,7 @@
 		0D33CC6A2646A9EB00757299 /* rockExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = rockExplosion.sks; sourceTree = "<group>"; };
 		0D33CC6C2646DA7500757299 /* threadship.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = threadship.sks; sourceTree = "<group>"; };
 		0D33CC6D2646DA7500757299 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0D57F2AE2652510E003263CC /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		0D9070162631B97500855895 /* thread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D9070192631B97500855895 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D90701B2631B97500855895 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -85,6 +88,7 @@
 		0DD73F2F263FFCDD00A22EC9 /* CanyonFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CanyonFire.sks; sourceTree = "<group>"; };
 		0DD73F312640009F00A22EC9 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		0DD73F332640068500A22EC9 /* firefly.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = firefly.sks; sourceTree = "<group>"; };
+		0DE92CB02656A90900CE5F4B /* SaveScores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveScores.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +207,7 @@
 		0DB6F26826441E9F00CC8D79 /* GameControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0DE92CAF2656A8EB00CE5F4B /* Scores */,
 				0D9070212631B97500855895 /* GameViewController.swift */,
 				0D90701F2631B97500855895 /* GameScene.swift */,
 				0DB6F26926441EC700CC8D79 /* StartGame.swift */,
@@ -228,6 +233,15 @@
 				0D9070232631B97500855895 /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		0DE92CAF2656A8EB00CE5F4B /* Scores */ = {
+			isa = PBXGroup;
+			children = (
+				0D57F2AE2652510E003263CC /* Score.swift */,
+				0DE92CB02656A90900CE5F4B /* SaveScores.swift */,
+			);
+			path = Scores;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D57F2AF2652510E003263CC /* Score.swift in Sources */,
 				0DB6F26526441E1700CC8D79 /* Title.swift in Sources */,
 				0D90704E263321AA00855895 /* Collision.swift in Sources */,
 				0DB6F26F2644200F00CC8D79 /* Gravity.swift in Sources */,
@@ -377,6 +392,7 @@
 				0DB6F25F26441BB700CC8D79 /* Rock.swift in Sources */,
 				0D9070222631B97500855895 /* GameViewController.swift in Sources */,
 				0DB6F26726441E3B00CC8D79 /* GameOver.swift in Sources */,
+				0DE92CB12656A90900CE5F4B /* SaveScores.swift in Sources */,
 				0D90701A2631B97500855895 /* AppDelegate.swift in Sources */,
 				0DB6F257264419D400CC8D79 /* Seed.swift in Sources */,
 				0DB6F26A26441EC700CC8D79 /* StartGame.swift in Sources */,

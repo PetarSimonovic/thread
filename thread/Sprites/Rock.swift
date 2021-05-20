@@ -25,7 +25,7 @@ extension GameScene {
             let height = CGFloat.random(in: -150.00...150.00)
             rock.position = CGPoint(x: CGFloat(1.5) * self.frame.width, y: self.frame.midY + height )
                   rock.name = "rock"
-            let randomScale = CGFloat.random(in: (0.2 + distance/100)...(0.5))
+            let randomScale = CGFloat.random(in: (0.2 + CGFloat(distance)/100)...(0.5))
                 rock.setScale(randomScale)
                 self.addChild(rock)
             let time = Float.random(in: (0.5...1))

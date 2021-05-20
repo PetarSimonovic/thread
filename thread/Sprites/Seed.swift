@@ -28,7 +28,7 @@ extension GameScene {
     seed.physicsBody?.affectedByGravity = false
     seed.physicsBody?.isDynamic = true
     if let seedParticles = SKEmitterNode(fileNamed: "threadship") {
-        seedParticles.setScale(CGFloat(0.2))
+        seedParticles.setScale(CGFloat(0.15))
         seed.addChild(seedParticles)
     }
     return seed
