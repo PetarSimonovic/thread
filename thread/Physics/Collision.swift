@@ -122,7 +122,6 @@ extension GameScene {
           let position = contact.contactPoint
           launchOrb(position, false)
           firstBody.node?.removeFromParent()
-            orb -= 1
             print("ORB REMOVED on ROCK COLLISION")
 
         } else if secondBody.categoryBitMask == CollisionBitMask.orbitCategory {
@@ -130,7 +129,6 @@ extension GameScene {
           let position = contact.contactPoint
           launchOrb(position, false)
         secondBody.node?.removeFromParent()
-            orb -= 1
             print("ORB REMOVED on ROCK COLLISION")
         }
         

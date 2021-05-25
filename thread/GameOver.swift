@@ -25,6 +25,8 @@ extension GameScene {
     
     func gameOver() {
         print("Game Over")
+        let score = Double(round(1000*distance)/1000)
+        highScore = checkScore(score, highScore)
         let endGame = SKAction.sequence([SKAction.wait(forDuration: 3.0), SKAction.run(restartGame)])
         self.run(endGame)
     }

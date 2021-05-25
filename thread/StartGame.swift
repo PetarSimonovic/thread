@@ -20,7 +20,8 @@ extension GameScene {
 //
         self.physicsWorld.contactDelegate = self
         self.backgroundColor = SKColor (red: 80.0/255.0, green: 192.0/255.0, blue: 203.0/255.0, alpha: 1.0)
-        self.seed = createSeed()
+        self.seed = self.seedObject.createSeed()
+        seed.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(seed)
 
         self.title = displayTitle()
@@ -31,9 +32,14 @@ extension GameScene {
     func startGame () {
         
         removeTitle()
+        setScore()
         setGravity()
-        createCanyon()
-        startRocks()
+        self.ground = canyon.createFlames(Int(self.frame.width), 30, "Ground")
+        ground.position = CGPoint(x: self.frame.width/2, y: -20)
+        addChild(ground)
+        self.ceiling = canyon.createFlames(Int(self.frame.width), 30, "Ceiling")
+        ceiling.position = CGPoint(x: self.frame.width/2, y: self.frame.height - 20)
+        addChild(ceiling)
         startFireFlies()
         seed.physicsBody?.affectedByGravity = true
 
@@ -71,10 +77,9 @@ extension GameScene {
         self.removeAllActions()
         isDead = false
         isGameStarted = false
-        score = 0
         nodeCount = 0
         acceleration = CGFloat(1)
-        distance = CGFloat(0.0)
+        distance = Double(0.0)
         createScene()
         thrownOrb = false
         difficulty = 0
