@@ -40,6 +40,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xForce = 0
     var orb: Int = 0
     let seedObject = Seed()
+    let canyon = Canyon()
+    var ground = SKSpriteNode()
+    var ceiling = SKSpriteNode()
 
     override func didMove(to view: SKView) {
         createScene()

@@ -34,8 +34,12 @@ extension GameScene {
         removeTitle()
         setScore()
         setGravity()
-        createCanyon()
-        startRocks()
+        self.ground = canyon.createFlames(Int(self.frame.width), 30, "Ground")
+        ground.position = CGPoint(x: self.frame.width/2, y: -20)
+        addChild(ground)
+        self.ceiling = canyon.createFlames(Int(self.frame.width), 30, "Ceiling")
+        ceiling.position = CGPoint(x: self.frame.width/2, y: self.frame.height - 20)
+        addChild(ceiling)
         startFireFlies()
         seed.physicsBody?.affectedByGravity = true
 
