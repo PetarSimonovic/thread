@@ -20,7 +20,8 @@ extension GameScene {
 //
         self.physicsWorld.contactDelegate = self
         self.backgroundColor = SKColor (red: 80.0/255.0, green: 192.0/255.0, blue: 203.0/255.0, alpha: 1.0)
-        self.seed = createSeed()
+        self.seed = self.seedObject.createSeed()
+        seed.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(seed)
 
         self.title = displayTitle()

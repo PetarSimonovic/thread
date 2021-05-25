@@ -35,6 +35,7 @@
 		0DD73F322640009F00A22EC9 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F312640009F00A22EC9 /* Explosion.sks */; };
 		0DD73F342640068500A22EC9 /* firefly.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DD73F332640068500A22EC9 /* firefly.sks */; };
 		0DE92CB12656A90900CE5F4B /* SaveScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE92CB02656A90900CE5F4B /* SaveScores.swift */; };
+		0DE92D11265D18B000CE5F4B /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE92D10265D18B000CE5F4B /* Motion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		0DD73F312640009F00A22EC9 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		0DD73F332640068500A22EC9 /* firefly.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = firefly.sks; sourceTree = "<group>"; };
 		0DE92CB02656A90900CE5F4B /* SaveScores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveScores.swift; sourceTree = "<group>"; };
+		0DE92D10265D18B000CE5F4B /* Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 			children = (
 				0DB6F26E2644200F00CC8D79 /* Gravity.swift */,
 				0D90704D263321AA00855895 /* Collision.swift */,
+				0DE92D10265D18B000CE5F4B /* Motion.swift */,
 			);
 			path = Physics;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				0DE92CB12656A90900CE5F4B /* SaveScores.swift in Sources */,
 				0D90701A2631B97500855895 /* AppDelegate.swift in Sources */,
 				0DB6F257264419D400CC8D79 /* Seed.swift in Sources */,
+				0DE92D11265D18B000CE5F4B /* Motion.swift in Sources */,
 				0DB6F26A26441EC700CC8D79 /* StartGame.swift in Sources */,
 				0DB6F26126441C0400CC8D79 /* Canyon.swift in Sources */,
 			);
